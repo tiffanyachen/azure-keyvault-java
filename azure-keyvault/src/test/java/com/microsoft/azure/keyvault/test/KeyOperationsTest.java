@@ -541,7 +541,7 @@ public class KeyOperationsTest extends KeyVaultClientIntegrationTestBase {
     }
 
     private static void validateRsaKeyBundle(KeyBundle bundle, String vault, String keyName, JsonWebKeyType kty, List<JsonWebKeyOperation> key_ops, Attributes attributes) throws Exception {
-        String prefix = vault + "/keys/" + keyName + "/";
+        String prefix = vault + "keys/" + keyName + "/";
         String kid = bundle.key().kid();
         Assert.assertTrue( 
                 String.format("\"kid\" should start with \"%s\", but instead the value is \"%s\".", prefix, kid), 
