@@ -4,10 +4,11 @@
  * regenerated.
  */
 
-package keyvault.models;
+package com.microsoft.azure.keyvault.models;
 
 import com.microsoft.rest.Base64Url;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeySignatureAlgorithm;
 
 /**
  * The key verify parameters.

@@ -4,7 +4,7 @@
  * regenerated.
  */
 
-package keyvault.models;
+package com.microsoft.azure.keyvault.models;
 
 import java.util.Map;
 import com.microsoft.rest.Base64Url;

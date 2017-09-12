@@ -6,4 +6,4 @@
  * This package contains the models classes for KeyVaultClientBase.
  * The key vault client performs cryptographic key operations and vault operations against the Key Vault service.
  */
-package keyvault.models;
+package com.microsoft.azure.keyvault.models;

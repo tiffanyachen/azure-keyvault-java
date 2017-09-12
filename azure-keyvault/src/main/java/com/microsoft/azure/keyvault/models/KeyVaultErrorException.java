@@ -4,7 +4,7 @@
  * regenerated.
  */
 
-package keyvault.models;
+package com.microsoft.azure.keyvault.models;
 
 import com.microsoft.rest.RestException;
 import okhttp3.ResponseBody;

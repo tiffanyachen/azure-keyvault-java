@@ -4,7 +4,7 @@
  * regenerated.
  */
 
-package keyvault.models;
+package com.microsoft.azure.keyvault.models;
 
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
