@@ -4,47 +4,52 @@
  * regenerated.
  */
 
-package keyvault;
+package com.microsoft.azure.keyvault;
 
-import .models.BackupKeyResult;
-import .models.BackupSecretResult;
-import .models.CertificateAttributes;
-import .models.CertificateBundle;
-import .models.CertificateIssuerListResult;
-import .models.CertificateListResult;
-import .models.CertificateOperation;
-import .models.CertificatePolicy;
-import .models.Contacts;
-import .models.DeletedCertificateBundle;
-import .models.DeletedCertificateListResult;
-import .models.DeletedKeyBundle;
-import .models.DeletedKeyListResult;
-import .models.DeletedSecretBundle;
-import .models.DeletedSecretListResult;
-import .models.IssuerAttributes;
-import .models.IssuerBundle;
-import .models.IssuerCredentials;
-import .models.JsonWebKey;
-import .models.JsonWebKeyEncryptionAlgorithm;
-import .models.JsonWebKeyOperation;
-import .models.JsonWebKeySignatureAlgorithm;
-import .models.JsonWebKeyType;
-import .models.KeyAttributes;
-import .models.KeyBundle;
-import .models.KeyListResult;
-import .models.KeyOperationResult;
-import .models.KeyVaultErrorException;
-import .models.KeyVerifyResult;
-import .models.OrganizationDetails;
-import .models.SasDefinitionAttributes;
-import .models.SasDefinitionBundle;
-import .models.SasDefinitionListResult;
-import .models.SecretAttributes;
-import .models.SecretBundle;
-import .models.SecretListResult;
-import .models.StorageAccountAttributes;
-import .models.StorageBundle;
-import .models.StorageListResult;
+import com.microsoft.azure.keyvault.models.BackupKeyResult;
+import com.microsoft.azure.keyvault.models.BackupSecretResult;
+import com.microsoft.azure.keyvault.models.CertificateAttributes;
+import com.microsoft.azure.keyvault.models.CertificateBundle;
+import com.microsoft.azure.keyvault.models.CertificateIssuerItem;
+import com.microsoft.azure.keyvault.models.CertificateItem;
+import com.microsoft.azure.keyvault.models.CertificateOperation;
+import com.microsoft.azure.keyvault.models.CertificatePolicy;
+import com.microsoft.azure.keyvault.models.Contacts;
+import com.microsoft.azure.keyvault.models.DeletedCertificateBundle;
+import com.microsoft.azure.keyvault.models.DeletedCertificateItem;
+import com.microsoft.azure.keyvault.models.DeletedKeyBundle;
+import com.microsoft.azure.keyvault.models.DeletedKeyItem;
+import com.microsoft.azure.keyvault.models.DeletedSecretBundle;
+import com.microsoft.azure.keyvault.models.DeletedSecretItem;
+import com.microsoft.azure.keyvault.models.IssuerAttributes;
+import com.microsoft.azure.keyvault.models.IssuerBundle;
+import com.microsoft.azure.keyvault.models.IssuerCredentials;
+import com.microsoft.azure.keyvault.webkey.JsonWebKey;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeyEncryptionAlgorithm;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeyOperation;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeySignatureAlgorithm;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeyType;
+import com.microsoft.azure.keyvault.models.KeyAttributes;
+import com.microsoft.azure.keyvault.models.KeyBundle;
+import com.microsoft.azure.keyvault.models.KeyItem;
+import com.microsoft.azure.keyvault.models.KeyOperationResult;
+import com.microsoft.azure.keyvault.models.KeyVaultErrorException;
+import com.microsoft.azure.keyvault.models.KeyVerifyResult;
+import com.microsoft.azure.keyvault.models.OrganizationDetails;
+import com.microsoft.azure.keyvault.models.SasDefinitionAttributes;
+import com.microsoft.azure.keyvault.models.SasDefinitionBundle;
+import com.microsoft.azure.keyvault.models.SasDefinitionItem;
+import com.microsoft.azure.keyvault.models.SecretAttributes;
+import com.microsoft.azure.keyvault.models.SecretBundle;
+import com.microsoft.azure.keyvault.models.SecretItem;
+import com.microsoft.azure.keyvault.models.StorageAccountAttributes;
+import com.microsoft.azure.keyvault.models.StorageAccountItem;
+import com.microsoft.azure.keyvault.models.StorageBundle;
+import com.microsoft.azure.AzureClient;
+import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.Page;
+import com.microsoft.azure.PagedList;
+import com.microsoft.rest.RestClient;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -52,7 +57,6 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import rx.Observable;
-import com.microsoft.rest.RestClient;
 
 /**
  * The interface for KeyVaultClientBase class.
@@ -62,13 +66,21 @@ public interface KeyVaultClientBase {
      * Gets the REST client.
      *
      * @return the {@link RestClient} object.
-    */
+     */
     RestClient restClient();
 
     /**
-     * The default base URL.
+     * Gets the {@link AzureClient} used for long running operations.
+     * @return the azure client;
      */
-    String DEFAULT_BASE_URL = "https://{vaultBaseUrl}";
+    AzureClient getAzureClient();
+
+    /**
+     * Gets the User-Agent header for the client.
+     *
+     * @return the user agent string.
+     */
+    String userAgent();
 
     /**
      * Gets Client API version..
@@ -78,12 +90,49 @@ public interface KeyVaultClientBase {
     String apiVersion();
 
     /**
-     * Sets Client API version..
+     * Gets Gets or sets the preferred language for the response..
      *
-     * @param apiVersion the apiVersion value.
+     * @return the acceptLanguage value.
+     */
+    String acceptLanguage();
+
+    /**
+     * Sets Gets or sets the preferred language for the response..
+     *
+     * @param acceptLanguage the acceptLanguage value.
      * @return the service client itself
      */
-    KeyVaultClientBase withApiVersion(String apiVersion);
+    KeyVaultClientBase withAcceptLanguage(String acceptLanguage);
+
+    /**
+     * Gets Gets or sets the retry timeout in seconds for Long Running Operations. Default value is 30..
+     *
+     * @return the longRunningOperationRetryTimeout value.
+     */
+    int longRunningOperationRetryTimeout();
+
+    /**
+     * Sets Gets or sets the retry timeout in seconds for Long Running Operations. Default value is 30..
+     *
+     * @param longRunningOperationRetryTimeout the longRunningOperationRetryTimeout value.
+     * @return the service client itself
+     */
+    KeyVaultClientBase withLongRunningOperationRetryTimeout(int longRunningOperationRetryTimeout);
+
+    /**
+     * Gets When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true..
+     *
+     * @return the generateClientRequestId value.
+     */
+    boolean generateClientRequestId();
+
+    /**
+     * Sets When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true..
+     *
+     * @param generateClientRequestId the generateClientRequestId value.
+     * @return the service client itself
+     */
+    KeyVaultClientBase withGenerateClientRequestId(boolean generateClientRequestId);
 
     /**
      * Creates a new key, stores it, then returns key parameters and attributes to the client.
@@ -535,9 +584,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    KeyListResult getKeyVersions(String vaultBaseUrl, String keyName);
+    PagedList<KeyItem> getKeyVersions(final String vaultBaseUrl, final String keyName);
 
     /**
      * Retrieves a list of individual key versions with the same key name.
@@ -549,7 +598,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName, final ServiceCallback<KeyListResult> serviceCallback);
+    ServiceFuture<List<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName, final ListOperationCallback<KeyItem> serviceCallback);
 
     /**
      * Retrieves a list of individual key versions with the same key name.
@@ -558,9 +607,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param keyName The name of the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName);
+    Observable<Page<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName);
 
     /**
      * Retrieves a list of individual key versions with the same key name.
@@ -569,9 +618,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param keyName The name of the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<ServiceResponse<KeyListResult>> getKeyVersionsWithServiceResponseAsync(String vaultBaseUrl, String keyName);
+    Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String keyName);
     /**
      * Retrieves a list of individual key versions with the same key name.
      * The full key identifier, attributes, and tags are provided in the response.
@@ -582,9 +631,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    KeyListResult getKeyVersions(String vaultBaseUrl, String keyName, Integer maxresults);
+    PagedList<KeyItem> getKeyVersions(final String vaultBaseUrl, final String keyName, final Integer maxresults);
 
     /**
      * Retrieves a list of individual key versions with the same key name.
@@ -597,7 +646,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName, Integer maxresults, final ServiceCallback<KeyListResult> serviceCallback);
+    ServiceFuture<List<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName, final Integer maxresults, final ListOperationCallback<KeyItem> serviceCallback);
 
     /**
      * Retrieves a list of individual key versions with the same key name.
@@ -607,9 +656,9 @@ public interface KeyVaultClientBase {
      * @param keyName The name of the key.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName, Integer maxresults);
+    Observable<Page<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName, final Integer maxresults);
 
     /**
      * Retrieves a list of individual key versions with the same key name.
@@ -619,9 +668,9 @@ public interface KeyVaultClientBase {
      * @param keyName The name of the key.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<ServiceResponse<KeyListResult>> getKeyVersionsWithServiceResponseAsync(String vaultBaseUrl, String keyName, Integer maxresults);
+    Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String keyName, final Integer maxresults);
 
     /**
      * List keys in the specified vault.
@@ -631,9 +680,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    KeyListResult getKeys(String vaultBaseUrl);
+    PagedList<KeyItem> getKeys(final String vaultBaseUrl);
 
     /**
      * List keys in the specified vault.
@@ -644,7 +693,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<KeyListResult> getKeysAsync(String vaultBaseUrl, final ServiceCallback<KeyListResult> serviceCallback);
+    ServiceFuture<List<KeyItem>> getKeysAsync(final String vaultBaseUrl, final ListOperationCallback<KeyItem> serviceCallback);
 
     /**
      * List keys in the specified vault.
@@ -652,9 +701,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<KeyListResult> getKeysAsync(String vaultBaseUrl);
+    Observable<Page<KeyItem>> getKeysAsync(final String vaultBaseUrl);
 
     /**
      * List keys in the specified vault.
@@ -662,9 +711,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<ServiceResponse<KeyListResult>> getKeysWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<KeyItem>>> getKeysWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * List keys in the specified vault.
      * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
@@ -674,9 +723,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    KeyListResult getKeys(String vaultBaseUrl, Integer maxresults);
+    PagedList<KeyItem> getKeys(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List keys in the specified vault.
@@ -688,7 +737,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<KeyListResult> getKeysAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<KeyListResult> serviceCallback);
+    ServiceFuture<List<KeyItem>> getKeysAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<KeyItem> serviceCallback);
 
     /**
      * List keys in the specified vault.
@@ -697,9 +746,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<KeyListResult> getKeysAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<KeyItem>> getKeysAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List keys in the specified vault.
@@ -708,9 +757,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    Observable<ServiceResponse<KeyListResult>> getKeysWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<KeyItem>>> getKeysWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Requests that a backup of the specified key be downloaded to the client.
@@ -1171,9 +1220,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedKeyListResult object if successful.
+     * @return the PagedList&lt;DeletedKeyItem&gt; object if successful.
      */
-    DeletedKeyListResult getDeletedKeys(String vaultBaseUrl);
+    PagedList<DeletedKeyItem> getDeletedKeys(final String vaultBaseUrl);
 
     /**
      * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
@@ -1183,25 +1232,25 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl, final ServiceCallback<DeletedKeyListResult> serviceCallback);
+    ServiceFuture<List<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl, final ListOperationCallback<DeletedKeyItem> serviceCallback);
 
     /**
      * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    Observable<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl);
+    Observable<Page<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl);
 
     /**
      * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    Observable<ServiceResponse<DeletedKeyListResult>> getDeletedKeysWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
      *
@@ -1210,9 +1259,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedKeyListResult object if successful.
+     * @return the PagedList&lt;DeletedKeyItem&gt; object if successful.
      */
-    DeletedKeyListResult getDeletedKeys(String vaultBaseUrl, Integer maxresults);
+    PagedList<DeletedKeyItem> getDeletedKeys(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
@@ -1223,7 +1272,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<DeletedKeyListResult> serviceCallback);
+    ServiceFuture<List<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<DeletedKeyItem> serviceCallback);
 
     /**
      * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
@@ -1231,9 +1280,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    Observable<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
@@ -1241,9 +1290,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    Observable<ServiceResponse<DeletedKeyListResult>> getDeletedKeysWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Retrieves the deleted key information plus its attributes. Authorization: Requires the keys/get permission.
@@ -1705,9 +1754,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    SecretListResult getSecrets(String vaultBaseUrl);
+    PagedList<SecretItem> getSecrets(final String vaultBaseUrl);
 
     /**
      * List secrets in a specified key vault.
@@ -1718,7 +1767,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<SecretListResult> getSecretsAsync(String vaultBaseUrl, final ServiceCallback<SecretListResult> serviceCallback);
+    ServiceFuture<List<SecretItem>> getSecretsAsync(final String vaultBaseUrl, final ListOperationCallback<SecretItem> serviceCallback);
 
     /**
      * List secrets in a specified key vault.
@@ -1726,9 +1775,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<SecretListResult> getSecretsAsync(String vaultBaseUrl);
+    Observable<Page<SecretItem>> getSecretsAsync(final String vaultBaseUrl);
 
     /**
      * List secrets in a specified key vault.
@@ -1736,9 +1785,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<ServiceResponse<SecretListResult>> getSecretsWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<SecretItem>>> getSecretsWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * List secrets in a specified key vault.
      * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
@@ -1748,9 +1797,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    SecretListResult getSecrets(String vaultBaseUrl, Integer maxresults);
+    PagedList<SecretItem> getSecrets(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List secrets in a specified key vault.
@@ -1762,7 +1811,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<SecretListResult> getSecretsAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<SecretListResult> serviceCallback);
+    ServiceFuture<List<SecretItem>> getSecretsAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<SecretItem> serviceCallback);
 
     /**
      * List secrets in a specified key vault.
@@ -1771,9 +1820,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<SecretListResult> getSecretsAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<SecretItem>> getSecretsAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List secrets in a specified key vault.
@@ -1782,9 +1831,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<ServiceResponse<SecretListResult>> getSecretsWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<SecretItem>>> getSecretsWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List the versions of the specified secret.
@@ -1795,9 +1844,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    SecretListResult getSecretVersions(String vaultBaseUrl, String secretName);
+    PagedList<SecretItem> getSecretVersions(final String vaultBaseUrl, final String secretName);
 
     /**
      * List the versions of the specified secret.
@@ -1809,7 +1858,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName, final ServiceCallback<SecretListResult> serviceCallback);
+    ServiceFuture<List<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName, final ListOperationCallback<SecretItem> serviceCallback);
 
     /**
      * List the versions of the specified secret.
@@ -1818,9 +1867,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param secretName The name of the secret.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName);
+    Observable<Page<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName);
 
     /**
      * List the versions of the specified secret.
@@ -1829,9 +1878,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param secretName The name of the secret.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<ServiceResponse<SecretListResult>> getSecretVersionsWithServiceResponseAsync(String vaultBaseUrl, String secretName);
+    Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String secretName);
     /**
      * List the versions of the specified secret.
      * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
@@ -1842,9 +1891,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    SecretListResult getSecretVersions(String vaultBaseUrl, String secretName, Integer maxresults);
+    PagedList<SecretItem> getSecretVersions(final String vaultBaseUrl, final String secretName, final Integer maxresults);
 
     /**
      * List the versions of the specified secret.
@@ -1857,7 +1906,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName, Integer maxresults, final ServiceCallback<SecretListResult> serviceCallback);
+    ServiceFuture<List<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName, final Integer maxresults, final ListOperationCallback<SecretItem> serviceCallback);
 
     /**
      * List the versions of the specified secret.
@@ -1867,9 +1916,9 @@ public interface KeyVaultClientBase {
      * @param secretName The name of the secret.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName, Integer maxresults);
+    Observable<Page<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName, final Integer maxresults);
 
     /**
      * List the versions of the specified secret.
@@ -1879,9 +1928,9 @@ public interface KeyVaultClientBase {
      * @param secretName The name of the secret.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    Observable<ServiceResponse<SecretListResult>> getSecretVersionsWithServiceResponseAsync(String vaultBaseUrl, String secretName, Integer maxresults);
+    Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String secretName, final Integer maxresults);
 
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
@@ -1890,9 +1939,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedSecretListResult object if successful.
+     * @return the PagedList&lt;DeletedSecretItem&gt; object if successful.
      */
-    DeletedSecretListResult getDeletedSecrets(String vaultBaseUrl);
+    PagedList<DeletedSecretItem> getDeletedSecrets(final String vaultBaseUrl);
 
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
@@ -1902,25 +1951,25 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl, final ServiceCallback<DeletedSecretListResult> serviceCallback);
+    ServiceFuture<List<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl, final ListOperationCallback<DeletedSecretItem> serviceCallback);
 
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    Observable<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl);
+    Observable<Page<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl);
 
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    Observable<ServiceResponse<DeletedSecretListResult>> getDeletedSecretsWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
      *
@@ -1929,9 +1978,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedSecretListResult object if successful.
+     * @return the PagedList&lt;DeletedSecretItem&gt; object if successful.
      */
-    DeletedSecretListResult getDeletedSecrets(String vaultBaseUrl, Integer maxresults);
+    PagedList<DeletedSecretItem> getDeletedSecrets(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
@@ -1942,7 +1991,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<DeletedSecretListResult> serviceCallback);
+    ServiceFuture<List<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<DeletedSecretItem> serviceCallback);
 
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
@@ -1950,9 +1999,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    Observable<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
@@ -1960,9 +2009,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    Observable<ServiceResponse<DeletedSecretListResult>> getDeletedSecretsWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Retrieves the deleted secret information plus its attributes. Authorization: requires the secrets/get permission.
@@ -2186,9 +2235,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    CertificateListResult getCertificates(String vaultBaseUrl);
+    PagedList<CertificateItem> getCertificates(final String vaultBaseUrl);
 
     /**
      * List certificates in a specified key vault.
@@ -2199,7 +2248,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<CertificateListResult> getCertificatesAsync(String vaultBaseUrl, final ServiceCallback<CertificateListResult> serviceCallback);
+    ServiceFuture<List<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl, final ListOperationCallback<CertificateItem> serviceCallback);
 
     /**
      * List certificates in a specified key vault.
@@ -2207,9 +2256,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<CertificateListResult> getCertificatesAsync(String vaultBaseUrl);
+    Observable<Page<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl);
 
     /**
      * List certificates in a specified key vault.
@@ -2217,9 +2266,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<ServiceResponse<CertificateListResult>> getCertificatesWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * List certificates in a specified key vault.
      * The GetCertificates operation returns the set of certificates resources in the specified key vault.
@@ -2229,9 +2278,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    CertificateListResult getCertificates(String vaultBaseUrl, Integer maxresults);
+    PagedList<CertificateItem> getCertificates(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List certificates in a specified key vault.
@@ -2243,7 +2292,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<CertificateListResult> getCertificatesAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<CertificateListResult> serviceCallback);
+    ServiceFuture<List<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<CertificateItem> serviceCallback);
 
     /**
      * List certificates in a specified key vault.
@@ -2252,9 +2301,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<CertificateListResult> getCertificatesAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List certificates in a specified key vault.
@@ -2263,9 +2312,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<ServiceResponse<CertificateListResult>> getCertificatesWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Deletes a certificate from a specified key vault.
@@ -2455,9 +2504,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateIssuerListResult object if successful.
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object if successful.
      */
-    CertificateIssuerListResult getCertificateIssuers(String vaultBaseUrl);
+    PagedList<CertificateIssuerItem> getCertificateIssuers(final String vaultBaseUrl);
 
     /**
      * List certificate issuers for a specified key vault.
@@ -2468,7 +2517,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl, final ServiceCallback<CertificateIssuerListResult> serviceCallback);
+    ServiceFuture<List<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl, final ListOperationCallback<CertificateIssuerItem> serviceCallback);
 
     /**
      * List certificate issuers for a specified key vault.
@@ -2476,9 +2525,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    Observable<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl);
+    Observable<Page<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl);
 
     /**
      * List certificate issuers for a specified key vault.
@@ -2486,9 +2535,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    Observable<ServiceResponse<CertificateIssuerListResult>> getCertificateIssuersWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * List certificate issuers for a specified key vault.
      * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
@@ -2498,9 +2547,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateIssuerListResult object if successful.
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object if successful.
      */
-    CertificateIssuerListResult getCertificateIssuers(String vaultBaseUrl, Integer maxresults);
+    PagedList<CertificateIssuerItem> getCertificateIssuers(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List certificate issuers for a specified key vault.
@@ -2512,7 +2561,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<CertificateIssuerListResult> serviceCallback);
+    ServiceFuture<List<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<CertificateIssuerItem> serviceCallback);
 
     /**
      * List certificate issuers for a specified key vault.
@@ -2521,9 +2570,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    Observable<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List certificate issuers for a specified key vault.
@@ -2532,9 +2581,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    Observable<ServiceResponse<CertificateIssuerListResult>> getCertificateIssuersWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Sets the specified certificate issuer.
@@ -3083,9 +3132,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    CertificateListResult getCertificateVersions(String vaultBaseUrl, String certificateName);
+    PagedList<CertificateItem> getCertificateVersions(final String vaultBaseUrl, final String certificateName);
 
     /**
      * List the versions of a certificate.
@@ -3097,7 +3146,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName, final ServiceCallback<CertificateListResult> serviceCallback);
+    ServiceFuture<List<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName, final ListOperationCallback<CertificateItem> serviceCallback);
 
     /**
      * List the versions of a certificate.
@@ -3106,9 +3155,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param certificateName The name of the certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName);
+    Observable<Page<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName);
 
     /**
      * List the versions of a certificate.
@@ -3117,9 +3166,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param certificateName The name of the certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<ServiceResponse<CertificateListResult>> getCertificateVersionsWithServiceResponseAsync(String vaultBaseUrl, String certificateName);
+    Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String certificateName);
     /**
      * List the versions of a certificate.
      * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
@@ -3130,9 +3179,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    CertificateListResult getCertificateVersions(String vaultBaseUrl, String certificateName, Integer maxresults);
+    PagedList<CertificateItem> getCertificateVersions(final String vaultBaseUrl, final String certificateName, final Integer maxresults);
 
     /**
      * List the versions of a certificate.
@@ -3145,7 +3194,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName, Integer maxresults, final ServiceCallback<CertificateListResult> serviceCallback);
+    ServiceFuture<List<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName, final Integer maxresults, final ListOperationCallback<CertificateItem> serviceCallback);
 
     /**
      * List the versions of a certificate.
@@ -3155,9 +3204,9 @@ public interface KeyVaultClientBase {
      * @param certificateName The name of the certificate.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName, Integer maxresults);
+    Observable<Page<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName, final Integer maxresults);
 
     /**
      * List the versions of a certificate.
@@ -3167,9 +3216,9 @@ public interface KeyVaultClientBase {
      * @param certificateName The name of the certificate.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    Observable<ServiceResponse<CertificateListResult>> getCertificateVersionsWithServiceResponseAsync(String vaultBaseUrl, String certificateName, Integer maxresults);
+    Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String certificateName, final Integer maxresults);
 
     /**
      * Lists the policy for a certificate.
@@ -3679,9 +3728,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedCertificateListResult object if successful.
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object if successful.
      */
-    DeletedCertificateListResult getDeletedCertificates(String vaultBaseUrl);
+    PagedList<DeletedCertificateItem> getDeletedCertificates(final String vaultBaseUrl);
 
     /**
      * Lists the deleted certificates in the specified vault, currently available for recovery.
@@ -3692,7 +3741,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl, final ServiceCallback<DeletedCertificateListResult> serviceCallback);
+    ServiceFuture<List<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl, final ListOperationCallback<DeletedCertificateItem> serviceCallback);
 
     /**
      * Lists the deleted certificates in the specified vault, currently available for recovery.
@@ -3700,9 +3749,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    Observable<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl);
+    Observable<Page<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl);
 
     /**
      * Lists the deleted certificates in the specified vault, currently available for recovery.
@@ -3710,9 +3759,9 @@ public interface KeyVaultClientBase {
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    Observable<ServiceResponse<DeletedCertificateListResult>> getDeletedCertificatesWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * Lists the deleted certificates in the specified vault, currently available for recovery.
      * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
@@ -3722,9 +3771,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedCertificateListResult object if successful.
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object if successful.
      */
-    DeletedCertificateListResult getDeletedCertificates(String vaultBaseUrl, Integer maxresults);
+    PagedList<DeletedCertificateItem> getDeletedCertificates(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Lists the deleted certificates in the specified vault, currently available for recovery.
@@ -3736,7 +3785,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<DeletedCertificateListResult> serviceCallback);
+    ServiceFuture<List<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<DeletedCertificateItem> serviceCallback);
 
     /**
      * Lists the deleted certificates in the specified vault, currently available for recovery.
@@ -3745,9 +3794,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    Observable<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Lists the deleted certificates in the specified vault, currently available for recovery.
@@ -3756,9 +3805,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    Observable<ServiceResponse<DeletedCertificateListResult>> getDeletedCertificatesWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Retrieves information about the specified deleted certificate.
@@ -3907,9 +3956,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the StorageListResult object if successful.
+     * @return the PagedList&lt;StorageAccountItem&gt; object if successful.
      */
-    StorageListResult getStorageAccounts(String vaultBaseUrl);
+    PagedList<StorageAccountItem> getStorageAccounts(final String vaultBaseUrl);
 
     /**
      * List storage accounts managed by specified key vault.
@@ -3919,25 +3968,25 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl, final ServiceCallback<StorageListResult> serviceCallback);
+    ServiceFuture<List<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl, final ListOperationCallback<StorageAccountItem> serviceCallback);
 
     /**
      * List storage accounts managed by specified key vault.
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    Observable<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl);
+    Observable<Page<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl);
 
     /**
      * List storage accounts managed by specified key vault.
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    Observable<ServiceResponse<StorageListResult>> getStorageAccountsWithServiceResponseAsync(String vaultBaseUrl);
+    Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsWithServiceResponseAsync(final String vaultBaseUrl);
     /**
      * List storage accounts managed by specified key vault.
      *
@@ -3946,9 +3995,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the StorageListResult object if successful.
+     * @return the PagedList&lt;StorageAccountItem&gt; object if successful.
      */
-    StorageListResult getStorageAccounts(String vaultBaseUrl, Integer maxresults);
+    PagedList<StorageAccountItem> getStorageAccounts(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List storage accounts managed by specified key vault.
@@ -3959,7 +4008,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<StorageListResult> serviceCallback);
+    ServiceFuture<List<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<StorageAccountItem> serviceCallback);
 
     /**
      * List storage accounts managed by specified key vault.
@@ -3967,9 +4016,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    Observable<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<Page<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * List storage accounts managed by specified key vault.
@@ -3977,9 +4026,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    Observable<ServiceResponse<StorageListResult>> getStorageAccountsWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults);
+    Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults);
 
     /**
      * Deletes a storage account.
@@ -4348,9 +4397,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SasDefinitionListResult object if successful.
+     * @return the PagedList&lt;SasDefinitionItem&gt; object if successful.
      */
-    SasDefinitionListResult getSasDefinitions(String vaultBaseUrl, String storageAccountName);
+    PagedList<SasDefinitionItem> getSasDefinitions(final String vaultBaseUrl, final String storageAccountName);
 
     /**
      * List storage SAS definitions for the given storage account.
@@ -4361,7 +4410,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName, final ServiceCallback<SasDefinitionListResult> serviceCallback);
+    ServiceFuture<List<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName, final ListOperationCallback<SasDefinitionItem> serviceCallback);
 
     /**
      * List storage SAS definitions for the given storage account.
@@ -4369,9 +4418,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param storageAccountName The name of the storage account.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    Observable<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName);
+    Observable<Page<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName);
 
     /**
      * List storage SAS definitions for the given storage account.
@@ -4379,9 +4428,9 @@ public interface KeyVaultClientBase {
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param storageAccountName The name of the storage account.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    Observable<ServiceResponse<SasDefinitionListResult>> getSasDefinitionsWithServiceResponseAsync(String vaultBaseUrl, String storageAccountName);
+    Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsWithServiceResponseAsync(final String vaultBaseUrl, final String storageAccountName);
     /**
      * List storage SAS definitions for the given storage account.
      *
@@ -4391,9 +4440,9 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SasDefinitionListResult object if successful.
+     * @return the PagedList&lt;SasDefinitionItem&gt; object if successful.
      */
-    SasDefinitionListResult getSasDefinitions(String vaultBaseUrl, String storageAccountName, Integer maxresults);
+    PagedList<SasDefinitionItem> getSasDefinitions(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults);
 
     /**
      * List storage SAS definitions for the given storage account.
@@ -4405,7 +4454,7 @@ public interface KeyVaultClientBase {
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    ServiceFuture<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName, Integer maxresults, final ServiceCallback<SasDefinitionListResult> serviceCallback);
+    ServiceFuture<List<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults, final ListOperationCallback<SasDefinitionItem> serviceCallback);
 
     /**
      * List storage SAS definitions for the given storage account.
@@ -4414,9 +4463,9 @@ public interface KeyVaultClientBase {
      * @param storageAccountName The name of the storage account.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    Observable<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName, Integer maxresults);
+    Observable<Page<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults);
 
     /**
      * List storage SAS definitions for the given storage account.
@@ -4425,9 +4474,9 @@ public interface KeyVaultClientBase {
      * @param storageAccountName The name of the storage account.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    Observable<ServiceResponse<SasDefinitionListResult>> getSasDefinitionsWithServiceResponseAsync(String vaultBaseUrl, String storageAccountName, Integer maxresults);
+    Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsWithServiceResponseAsync(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults);
 
     /**
      * Deletes a SAS definition from a specified storage account.
@@ -4736,5 +4785,517 @@ public interface KeyVaultClientBase {
      * @return the observable to the SasDefinitionBundle object
      */
     Observable<ServiceResponse<SasDefinitionBundle>> updateSasDefinitionWithServiceResponseAsync(String vaultBaseUrl, String storageAccountName, String sasDefinitionName, Map<String, String> parameters, SasDefinitionAttributes sasDefinitionAttributes, Map<String, String> tags);
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
+     */
+    PagedList<KeyItem> getKeyVersionsNext(final String nextPageLink);
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<KeyItem>> getKeyVersionsNextAsync(final String nextPageLink, final ServiceFuture<List<KeyItem>> serviceFuture, final ListOperationCallback<KeyItem> serviceCallback);
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    Observable<Page<KeyItem>> getKeyVersionsNextAsync(final String nextPageLink);
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
+     */
+    PagedList<KeyItem> getKeysNext(final String nextPageLink);
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<KeyItem>> getKeysNextAsync(final String nextPageLink, final ServiceFuture<List<KeyItem>> serviceFuture, final ListOperationCallback<KeyItem> serviceCallback);
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    Observable<Page<KeyItem>> getKeysNextAsync(final String nextPageLink);
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    Observable<ServiceResponse<Page<KeyItem>>> getKeysNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;DeletedKeyItem&gt; object if successful.
+     */
+    PagedList<DeletedKeyItem> getDeletedKeysNext(final String nextPageLink);
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<DeletedKeyItem>> getDeletedKeysNextAsync(final String nextPageLink, final ServiceFuture<List<DeletedKeyItem>> serviceFuture, final ListOperationCallback<DeletedKeyItem> serviceCallback);
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
+     */
+    Observable<Page<DeletedKeyItem>> getDeletedKeysNextAsync(final String nextPageLink);
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
+     */
+    Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
+     */
+    PagedList<SecretItem> getSecretsNext(final String nextPageLink);
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<SecretItem>> getSecretsNextAsync(final String nextPageLink, final ServiceFuture<List<SecretItem>> serviceFuture, final ListOperationCallback<SecretItem> serviceCallback);
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    Observable<Page<SecretItem>> getSecretsNextAsync(final String nextPageLink);
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    Observable<ServiceResponse<Page<SecretItem>>> getSecretsNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
+     */
+    PagedList<SecretItem> getSecretVersionsNext(final String nextPageLink);
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<SecretItem>> getSecretVersionsNextAsync(final String nextPageLink, final ServiceFuture<List<SecretItem>> serviceFuture, final ListOperationCallback<SecretItem> serviceCallback);
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    Observable<Page<SecretItem>> getSecretVersionsNextAsync(final String nextPageLink);
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;DeletedSecretItem&gt; object if successful.
+     */
+    PagedList<DeletedSecretItem> getDeletedSecretsNext(final String nextPageLink);
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<DeletedSecretItem>> getDeletedSecretsNextAsync(final String nextPageLink, final ServiceFuture<List<DeletedSecretItem>> serviceFuture, final ListOperationCallback<DeletedSecretItem> serviceCallback);
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
+     */
+    Observable<Page<DeletedSecretItem>> getDeletedSecretsNextAsync(final String nextPageLink);
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
+     */
+    Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
+     */
+    PagedList<CertificateItem> getCertificatesNext(final String nextPageLink);
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<CertificateItem>> getCertificatesNextAsync(final String nextPageLink, final ServiceFuture<List<CertificateItem>> serviceFuture, final ListOperationCallback<CertificateItem> serviceCallback);
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    Observable<Page<CertificateItem>> getCertificatesNextAsync(final String nextPageLink);
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object if successful.
+     */
+    PagedList<CertificateIssuerItem> getCertificateIssuersNext(final String nextPageLink);
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<CertificateIssuerItem>> getCertificateIssuersNextAsync(final String nextPageLink, final ServiceFuture<List<CertificateIssuerItem>> serviceFuture, final ListOperationCallback<CertificateIssuerItem> serviceCallback);
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
+     */
+    Observable<Page<CertificateIssuerItem>> getCertificateIssuersNextAsync(final String nextPageLink);
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
+     */
+    Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
+     */
+    PagedList<CertificateItem> getCertificateVersionsNext(final String nextPageLink);
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<CertificateItem>> getCertificateVersionsNextAsync(final String nextPageLink, final ServiceFuture<List<CertificateItem>> serviceFuture, final ListOperationCallback<CertificateItem> serviceCallback);
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    Observable<Page<CertificateItem>> getCertificateVersionsNextAsync(final String nextPageLink);
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object if successful.
+     */
+    PagedList<DeletedCertificateItem> getDeletedCertificatesNext(final String nextPageLink);
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<DeletedCertificateItem>> getDeletedCertificatesNextAsync(final String nextPageLink, final ServiceFuture<List<DeletedCertificateItem>> serviceFuture, final ListOperationCallback<DeletedCertificateItem> serviceCallback);
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
+     */
+    Observable<Page<DeletedCertificateItem>> getDeletedCertificatesNextAsync(final String nextPageLink);
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
+     */
+    Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;StorageAccountItem&gt; object if successful.
+     */
+    PagedList<StorageAccountItem> getStorageAccountsNext(final String nextPageLink);
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<StorageAccountItem>> getStorageAccountsNextAsync(final String nextPageLink, final ServiceFuture<List<StorageAccountItem>> serviceFuture, final ListOperationCallback<StorageAccountItem> serviceCallback);
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
+     */
+    Observable<Page<StorageAccountItem>> getStorageAccountsNextAsync(final String nextPageLink);
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
+     */
+    Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsNextWithServiceResponseAsync(final String nextPageLink);
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;SasDefinitionItem&gt; object if successful.
+     */
+    PagedList<SasDefinitionItem> getSasDefinitionsNext(final String nextPageLink);
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    ServiceFuture<List<SasDefinitionItem>> getSasDefinitionsNextAsync(final String nextPageLink, final ServiceFuture<List<SasDefinitionItem>> serviceFuture, final ListOperationCallback<SasDefinitionItem> serviceCallback);
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
+     */
+    Observable<Page<SasDefinitionItem>> getSasDefinitionsNextAsync(final String nextPageLink);
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
+     */
+    Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsNextWithServiceResponseAsync(final String nextPageLink);
 
 }
