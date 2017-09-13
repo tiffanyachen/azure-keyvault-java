@@ -4,76 +4,81 @@
  * regenerated.
  */
 
-package keyvault.implementation;
+package com.microsoft.azure.keyvault.implementation;
 
-import .KeyVaultClientBase;
-import com.microsoft.rest.ServiceClient;
-import com.microsoft.rest.RestClient;
-import okhttp3.OkHttpClient;
-import retrofit2.Retrofit;
-import .models.BackupKeyResult;
-import .models.BackupSecretResult;
-import .models.CertificateAttributes;
-import .models.CertificateBundle;
-import .models.CertificateCreateParameters;
-import .models.CertificateImportParameters;
-import .models.CertificateIssuerListResult;
-import .models.CertificateIssuerSetParameters;
-import .models.CertificateIssuerUpdateParameters;
-import .models.CertificateListResult;
-import .models.CertificateMergeParameters;
-import .models.CertificateOperation;
-import .models.CertificateOperationUpdateParameter;
-import .models.CertificatePolicy;
-import .models.CertificateUpdateParameters;
-import .models.Contacts;
-import .models.DeletedCertificateBundle;
-import .models.DeletedCertificateListResult;
-import .models.DeletedKeyBundle;
-import .models.DeletedKeyListResult;
-import .models.DeletedSecretBundle;
-import .models.DeletedSecretListResult;
-import .models.IssuerAttributes;
-import .models.IssuerBundle;
-import .models.IssuerCredentials;
-import .models.JsonWebKey;
-import .models.JsonWebKeyEncryptionAlgorithm;
-import .models.JsonWebKeyOperation;
-import .models.JsonWebKeySignatureAlgorithm;
-import .models.JsonWebKeyType;
-import .models.KeyAttributes;
-import .models.KeyBundle;
-import .models.KeyCreateParameters;
-import .models.KeyImportParameters;
-import .models.KeyListResult;
-import .models.KeyOperationResult;
-import .models.KeyOperationsParameters;
-import .models.KeyRestoreParameters;
-import .models.KeySignParameters;
-import .models.KeyUpdateParameters;
-import .models.KeyVaultErrorException;
-import .models.KeyVerifyParameters;
-import .models.KeyVerifyResult;
-import .models.OrganizationDetails;
-import .models.SasDefinitionAttributes;
-import .models.SasDefinitionBundle;
-import .models.SasDefinitionCreateParameters;
-import .models.SasDefinitionListResult;
-import .models.SasDefinitionUpdateParameters;
-import .models.SecretAttributes;
-import .models.SecretBundle;
-import .models.SecretListResult;
-import .models.SecretRestoreParameters;
-import .models.SecretSetParameters;
-import .models.SecretUpdateParameters;
-import .models.StorageAccountAttributes;
-import .models.StorageAccountCreateParameters;
-import .models.StorageAccountRegenerteKeyParameters;
-import .models.StorageAccountUpdateParameters;
-import .models.StorageBundle;
-import .models.StorageListResult;
+import com.microsoft.azure.keyvault.KeyVaultClientBase;
+import com.microsoft.azure.keyvault.models.BackupKeyResult;
+import com.microsoft.azure.keyvault.models.BackupSecretResult;
+import com.microsoft.azure.keyvault.models.CertificateAttributes;
+import com.microsoft.azure.keyvault.models.CertificateBundle;
+import com.microsoft.azure.keyvault.models.CertificateCreateParameters;
+import com.microsoft.azure.keyvault.models.CertificateImportParameters;
+import com.microsoft.azure.keyvault.models.CertificateIssuerItem;
+import com.microsoft.azure.keyvault.models.CertificateIssuerSetParameters;
+import com.microsoft.azure.keyvault.models.CertificateIssuerUpdateParameters;
+import com.microsoft.azure.keyvault.models.CertificateItem;
+import com.microsoft.azure.keyvault.models.CertificateMergeParameters;
+import com.microsoft.azure.keyvault.models.CertificateOperation;
+import com.microsoft.azure.keyvault.models.CertificateOperationUpdateParameter;
+import com.microsoft.azure.keyvault.models.CertificatePolicy;
+import com.microsoft.azure.keyvault.models.CertificateUpdateParameters;
+import com.microsoft.azure.keyvault.models.Contacts;
+import com.microsoft.azure.keyvault.models.DeletedCertificateBundle;
+import com.microsoft.azure.keyvault.models.DeletedCertificateItem;
+import com.microsoft.azure.keyvault.models.DeletedKeyBundle;
+import com.microsoft.azure.keyvault.models.DeletedKeyItem;
+import com.microsoft.azure.keyvault.models.DeletedSecretBundle;
+import com.microsoft.azure.keyvault.models.DeletedSecretItem;
+import com.microsoft.azure.keyvault.models.IssuerAttributes;
+import com.microsoft.azure.keyvault.models.IssuerBundle;
+import com.microsoft.azure.keyvault.models.IssuerCredentials;
+import com.microsoft.azure.keyvault.webkey.JsonWebKey;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeyEncryptionAlgorithm;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeyOperation;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeySignatureAlgorithm;
+import com.microsoft.azure.keyvault.webkey.JsonWebKeyType;
+import com.microsoft.azure.keyvault.models.KeyAttributes;
+import com.microsoft.azure.keyvault.models.KeyBundle;
+import com.microsoft.azure.keyvault.models.KeyCreateParameters;
+import com.microsoft.azure.keyvault.models.KeyImportParameters;
+import com.microsoft.azure.keyvault.models.KeyItem;
+import com.microsoft.azure.keyvault.models.KeyOperationResult;
+import com.microsoft.azure.keyvault.models.KeyOperationsParameters;
+import com.microsoft.azure.keyvault.models.KeyRestoreParameters;
+import com.microsoft.azure.keyvault.models.KeySignParameters;
+import com.microsoft.azure.keyvault.models.KeyUpdateParameters;
+import com.microsoft.azure.keyvault.models.KeyVaultErrorException;
+import com.microsoft.azure.keyvault.models.KeyVerifyParameters;
+import com.microsoft.azure.keyvault.models.KeyVerifyResult;
+import com.microsoft.azure.keyvault.models.OrganizationDetails;
+import com.microsoft.azure.keyvault.models.PageImpl;
+import com.microsoft.azure.keyvault.models.SasDefinitionAttributes;
+import com.microsoft.azure.keyvault.models.SasDefinitionBundle;
+import com.microsoft.azure.keyvault.models.SasDefinitionCreateParameters;
+import com.microsoft.azure.keyvault.models.SasDefinitionItem;
+import com.microsoft.azure.keyvault.models.SasDefinitionUpdateParameters;
+import com.microsoft.azure.keyvault.models.SecretAttributes;
+import com.microsoft.azure.keyvault.models.SecretBundle;
+import com.microsoft.azure.keyvault.models.SecretItem;
+import com.microsoft.azure.keyvault.models.SecretRestoreParameters;
+import com.microsoft.azure.keyvault.models.SecretSetParameters;
+import com.microsoft.azure.keyvault.models.SecretUpdateParameters;
+import com.microsoft.azure.keyvault.models.StorageAccountAttributes;
+import com.microsoft.azure.keyvault.models.StorageAccountCreateParameters;
+import com.microsoft.azure.keyvault.models.StorageAccountItem;
+import com.microsoft.azure.keyvault.models.StorageAccountRegenerteKeyParameters;
+import com.microsoft.azure.keyvault.models.StorageAccountUpdateParameters;
+import com.microsoft.azure.keyvault.models.StorageBundle;
 import com.google.common.base.Joiner;
 import com.google.common.reflect.TypeToken;
+import com.microsoft.azure.AzureClient;
+import com.microsoft.azure.AzureServiceClient;
+import com.microsoft.azure.AzureServiceFuture;
+import com.microsoft.azure.ListOperationCallback;
+import com.microsoft.azure.Page;
+import com.microsoft.azure.PagedList;
+import com.microsoft.rest.credentials.ServiceClientCredentials;
+import com.microsoft.rest.RestClient;
 import com.microsoft.rest.ServiceCallback;
 import com.microsoft.rest.ServiceFuture;
 import com.microsoft.rest.ServiceResponse;
@@ -92,18 +97,27 @@ import retrofit2.http.Path;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Query;
+import retrofit2.http.Url;
 import retrofit2.Response;
 import rx.functions.Func1;
 import rx.Observable;
 
 /**
- * Initializes a new instance of the KeyVaultClientBase class.
+ * Initializes a new instance of the KeyVaultClientBaseImpl class.
  */
-public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultClientBase {
-    /**
-     * The Retrofit service to perform REST calls.
-     */
+public class KeyVaultClientBaseImpl extends AzureServiceClient implements KeyVaultClientBase {
+    /** The Retrofit service to perform REST calls. */
     private KeyVaultClientBaseService service;
+    /** the {@link AzureClient} used for long running operations. */
+    private AzureClient azureClient;
+
+    /**
+     * Gets the {@link AzureClient} used for long running operations.
+     * @return the azure client;
+     */
+    public AzureClient getAzureClient() {
+        return this.azureClient;
+    }
 
     /** Client API version. */
     private String apiVersion;
@@ -117,73 +131,126 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         return this.apiVersion;
     }
 
+    /** Gets or sets the preferred language for the response. */
+    private String acceptLanguage;
+
     /**
-     * Sets Client API version.
+     * Gets Gets or sets the preferred language for the response.
      *
-     * @param apiVersion the apiVersion value.
+     * @return the acceptLanguage value.
+     */
+    public String acceptLanguage() {
+        return this.acceptLanguage;
+    }
+
+    /**
+     * Sets Gets or sets the preferred language for the response.
+     *
+     * @param acceptLanguage the acceptLanguage value.
      * @return the service client itself
      */
-    public KeyVaultClientBaseImpl withApiVersion(String apiVersion) {
-        this.apiVersion = apiVersion;
+    public KeyVaultClientBaseImpl withAcceptLanguage(String acceptLanguage) {
+        this.acceptLanguage = acceptLanguage;
+        return this;
+    }
+
+    /** Gets or sets the retry timeout in seconds for Long Running Operations. Default value is 30. */
+    private int longRunningOperationRetryTimeout;
+
+    /**
+     * Gets Gets or sets the retry timeout in seconds for Long Running Operations. Default value is 30.
+     *
+     * @return the longRunningOperationRetryTimeout value.
+     */
+    public int longRunningOperationRetryTimeout() {
+        return this.longRunningOperationRetryTimeout;
+    }
+
+    /**
+     * Sets Gets or sets the retry timeout in seconds for Long Running Operations. Default value is 30.
+     *
+     * @param longRunningOperationRetryTimeout the longRunningOperationRetryTimeout value.
+     * @return the service client itself
+     */
+    public KeyVaultClientBaseImpl withLongRunningOperationRetryTimeout(int longRunningOperationRetryTimeout) {
+        this.longRunningOperationRetryTimeout = longRunningOperationRetryTimeout;
+        return this;
+    }
+
+    /** When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true. */
+    private boolean generateClientRequestId;
+
+    /**
+     * Gets When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
+     *
+     * @return the generateClientRequestId value.
+     */
+    public boolean generateClientRequestId() {
+        return this.generateClientRequestId;
+    }
+
+    /**
+     * Sets When set to true a unique x-ms-client-request-id value is generated and included in each request. Default is true.
+     *
+     * @param generateClientRequestId the generateClientRequestId value.
+     * @return the service client itself
+     */
+    public KeyVaultClientBaseImpl withGenerateClientRequestId(boolean generateClientRequestId) {
+        this.generateClientRequestId = generateClientRequestId;
         return this;
     }
 
     /**
      * Initializes an instance of KeyVaultClientBase client.
+     *
+     * @param credentials the management credentials for Azure
      */
-    public KeyVaultClientBaseImpl() {
-        this("https://{vaultBaseUrl}");
+    public KeyVaultClientBaseImpl(ServiceClientCredentials credentials) {
+        this("https://{vaultBaseUrl}", credentials);
     }
 
     /**
      * Initializes an instance of KeyVaultClientBase client.
      *
      * @param baseUrl the base URL of the host
+     * @param credentials the management credentials for Azure
      */
-    private KeyVaultClientBaseImpl(String baseUrl) {
-        super(baseUrl);
+    private KeyVaultClientBaseImpl(String baseUrl, ServiceClientCredentials credentials) {
+        super(baseUrl, credentials);
         initialize();
     }
 
     /**
      * Initializes an instance of KeyVaultClientBase client.
      *
-     * @param clientBuilder the builder for building an OkHttp client, bundled with user configurations
-     * @param restBuilder the builder for building an Retrofit client, bundled with user configurations
-     */
-    public KeyVaultClientBaseImpl(OkHttpClient.Builder clientBuilder, Retrofit.Builder restBuilder) {
-        this("https://{vaultBaseUrl}", clientBuilder, restBuilder);
-        initialize();
-    }
-
-    /**
-     * Initializes an instance of KeyVaultClientBase client.
-     *
-     * @param baseUrl the base URL of the host
-     * @param clientBuilder the builder for building an OkHttp client, bundled with user configurations
-     * @param restBuilder the builder for building an Retrofit client, bundled with user configurations
-     */
-    private KeyVaultClientBaseImpl(String baseUrl, OkHttpClient.Builder clientBuilder, Retrofit.Builder restBuilder) {
-        super(baseUrl, clientBuilder, restBuilder);
-        initialize();
-    }
-
-    /**
-     * Initializes an instance of KeyVaultClientBase client.
-     *
-     * @param restClient the REST client containing pre-configured settings
+     * @param restClient the REST client to connect to Azure.
      */
     public KeyVaultClientBaseImpl(RestClient restClient) {
         super(restClient);
         initialize();
     }
 
-    private void initialize() {
+    protected void initialize() {
+        this.apiVersion = "2016-10-01";
+        this.acceptLanguage = "en-US";
+        this.longRunningOperationRetryTimeout = 30;
+        this.generateClientRequestId = true;
+        this.azureClient = new AzureClient(this);
         initializeService();
     }
 
+    /**
+     * Gets the User-Agent header for the client.
+     *
+     * @return the user agent string.
+     */
+    @Override
+    public String userAgent() {
+        return String.format("%s (%s, %s)", super.userAgent(), "KeyVaultClientBase", "2016-10-01");
+    }
+
     private void initializeService() {
-        service = retrofit().create(KeyVaultClientBaseService.class);
+        service = restClient().retrofit().create(KeyVaultClientBaseService.class);
     }
 
     /**
@@ -193,271 +260,319 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
     interface KeyVaultClientBaseService {
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase createKey" })
         @POST("keys/{key-name}/create")
-        Observable<Response<ResponseBody>> createKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Body KeyCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> createKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase importKey" })
         @PUT("keys/{key-name}")
-        Observable<Response<ResponseBody>> importKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Body KeyImportParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> importKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyImportParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteKey" })
         @HTTP(path = "keys/{key-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateKey" })
         @PATCH("keys/{key-name}/{key-version}")
-        Observable<Response<ResponseBody>> updateKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Body KeyUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getKey" })
         @GET("keys/{key-name}/{key-version}")
-        Observable<Response<ResponseBody>> getKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getKeyVersions" })
         @GET("keys/{key-name}/versions")
-        Observable<Response<ResponseBody>> getKeyVersions(@Path("key-name") String keyName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getKeyVersions(@Path("key-name") String keyName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getKeys" })
         @GET("keys")
-        Observable<Response<ResponseBody>> getKeys(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getKeys(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase backupKey" })
         @POST("keys/{key-name}/backup")
-        Observable<Response<ResponseBody>> backupKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> backupKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase restoreKey" })
         @POST("keys/restore")
-        Observable<Response<ResponseBody>> restoreKey(@Query("api-version") String apiVersion, @Body KeyRestoreParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> restoreKey(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyRestoreParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase encrypt" })
         @POST("keys/{key-name}/{key-version}/encrypt")
-        Observable<Response<ResponseBody>> encrypt(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> encrypt(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase decrypt" })
         @POST("keys/{key-name}/{key-version}/decrypt")
-        Observable<Response<ResponseBody>> decrypt(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> decrypt(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase sign" })
         @POST("keys/{key-name}/{key-version}/sign")
-        Observable<Response<ResponseBody>> sign(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Body KeySignParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> sign(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeySignParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase verify" })
         @POST("keys/{key-name}/{key-version}/verify")
-        Observable<Response<ResponseBody>> verify(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Body KeyVerifyParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> verify(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyVerifyParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase wrapKey" })
         @POST("keys/{key-name}/{key-version}/wrapkey")
-        Observable<Response<ResponseBody>> wrapKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> wrapKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase unwrapKey" })
         @POST("keys/{key-name}/{key-version}/unwrapkey")
-        Observable<Response<ResponseBody>> unwrapKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> unwrapKey(@Path("key-name") String keyName, @Path("key-version") String keyVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body KeyOperationsParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedKeys" })
         @GET("deletedkeys")
-        Observable<Response<ResponseBody>> getDeletedKeys(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getDeletedKeys(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedKey" })
         @GET("deletedkeys/{key-name}")
-        Observable<Response<ResponseBody>> getDeletedKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getDeletedKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase purgeDeletedKey" })
         @HTTP(path = "deletedkeys/{key-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> purgeDeletedKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> purgeDeletedKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase recoverDeletedKey" })
         @POST("deletedkeys/{key-name}/recover")
-        Observable<Response<ResponseBody>> recoverDeletedKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> recoverDeletedKey(@Path("key-name") String keyName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase setSecret" })
         @PUT("secrets/{secret-name}")
-        Observable<Response<ResponseBody>> setSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Body SecretSetParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> setSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SecretSetParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteSecret" })
         @HTTP(path = "secrets/{secret-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateSecret" })
         @PATCH("secrets/{secret-name}/{secret-version}")
-        Observable<Response<ResponseBody>> updateSecret(@Path("secret-name") String secretName, @Path("secret-version") String secretVersion, @Query("api-version") String apiVersion, @Body SecretUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateSecret(@Path("secret-name") String secretName, @Path("secret-version") String secretVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SecretUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSecret" })
         @GET("secrets/{secret-name}/{secret-version}")
-        Observable<Response<ResponseBody>> getSecret(@Path("secret-name") String secretName, @Path("secret-version") String secretVersion, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getSecret(@Path("secret-name") String secretName, @Path("secret-version") String secretVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSecrets" })
         @GET("secrets")
-        Observable<Response<ResponseBody>> getSecrets(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getSecrets(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSecretVersions" })
         @GET("secrets/{secret-name}/versions")
-        Observable<Response<ResponseBody>> getSecretVersions(@Path("secret-name") String secretName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getSecretVersions(@Path("secret-name") String secretName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedSecrets" })
         @GET("deletedsecrets")
-        Observable<Response<ResponseBody>> getDeletedSecrets(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getDeletedSecrets(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedSecret" })
         @GET("deletedsecrets/{secret-name}")
-        Observable<Response<ResponseBody>> getDeletedSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getDeletedSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase purgeDeletedSecret" })
         @HTTP(path = "deletedsecrets/{secret-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> purgeDeletedSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> purgeDeletedSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase recoverDeletedSecret" })
         @POST("deletedsecrets/{secret-name}/recover")
-        Observable<Response<ResponseBody>> recoverDeletedSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> recoverDeletedSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase backupSecret" })
         @POST("secrets/{secret-name}/backup")
-        Observable<Response<ResponseBody>> backupSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> backupSecret(@Path("secret-name") String secretName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase restoreSecret" })
         @POST("secrets/restore")
-        Observable<Response<ResponseBody>> restoreSecret(@Query("api-version") String apiVersion, @Body SecretRestoreParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> restoreSecret(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SecretRestoreParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificates" })
         @GET("certificates")
-        Observable<Response<ResponseBody>> getCertificates(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificates(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteCertificate" })
         @HTTP(path = "certificates/{certificate-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase setCertificateContacts" })
         @PUT("certificates/contacts")
-        Observable<Response<ResponseBody>> setCertificateContacts(@Body Contacts contacts, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> setCertificateContacts(@Body Contacts contacts, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificateContacts" })
         @GET("certificates/contacts")
-        Observable<Response<ResponseBody>> getCertificateContacts(@Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificateContacts(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteCertificateContacts" })
         @HTTP(path = "certificates/contacts", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteCertificateContacts(@Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteCertificateContacts(@Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificateIssuers" })
         @GET("certificates/issuers")
-        Observable<Response<ResponseBody>> getCertificateIssuers(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificateIssuers(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase setCertificateIssuer" })
         @PUT("certificates/issuers/{issuer-name}")
-        Observable<Response<ResponseBody>> setCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Body CertificateIssuerSetParameters parameter, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> setCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body CertificateIssuerSetParameters parameter, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateCertificateIssuer" })
         @PATCH("certificates/issuers/{issuer-name}")
-        Observable<Response<ResponseBody>> updateCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Body CertificateIssuerUpdateParameters parameter, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body CertificateIssuerUpdateParameters parameter, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificateIssuer" })
         @GET("certificates/issuers/{issuer-name}")
-        Observable<Response<ResponseBody>> getCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteCertificateIssuer" })
         @HTTP(path = "certificates/issuers/{issuer-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteCertificateIssuer(@Path("issuer-name") String issuerName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase createCertificate" })
         @POST("certificates/{certificate-name}/create")
-        Observable<Response<ResponseBody>> createCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Body CertificateCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> createCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body CertificateCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase importCertificate" })
         @POST("certificates/{certificate-name}/import")
-        Observable<Response<ResponseBody>> importCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Body CertificateImportParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> importCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body CertificateImportParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificateVersions" })
         @GET("certificates/{certificate-name}/versions")
-        Observable<Response<ResponseBody>> getCertificateVersions(@Path("certificate-name") String certificateName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificateVersions(@Path("certificate-name") String certificateName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificatePolicy" })
         @GET("certificates/{certificate-name}/policy")
-        Observable<Response<ResponseBody>> getCertificatePolicy(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificatePolicy(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateCertificatePolicy" })
         @PATCH("certificates/{certificate-name}/policy")
-        Observable<Response<ResponseBody>> updateCertificatePolicy(@Path("certificate-name") String certificateName, @Body CertificatePolicy certificatePolicy, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateCertificatePolicy(@Path("certificate-name") String certificateName, @Body CertificatePolicy certificatePolicy, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateCertificate" })
         @PATCH("certificates/{certificate-name}/{certificate-version}")
-        Observable<Response<ResponseBody>> updateCertificate(@Path("certificate-name") String certificateName, @Path("certificate-version") String certificateVersion, @Query("api-version") String apiVersion, @Body CertificateUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateCertificate(@Path("certificate-name") String certificateName, @Path("certificate-version") String certificateVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body CertificateUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificate" })
         @GET("certificates/{certificate-name}/{certificate-version}")
-        Observable<Response<ResponseBody>> getCertificate(@Path("certificate-name") String certificateName, @Path("certificate-version") String certificateVersion, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificate(@Path("certificate-name") String certificateName, @Path("certificate-version") String certificateVersion, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateCertificateOperation" })
         @PATCH("certificates/{certificate-name}/pending")
-        Observable<Response<ResponseBody>> updateCertificateOperation(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Body CertificateOperationUpdateParameter certificateOperation, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateCertificateOperation(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body CertificateOperationUpdateParameter certificateOperation, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificateOperation" })
         @GET("certificates/{certificate-name}/pending")
-        Observable<Response<ResponseBody>> getCertificateOperation(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getCertificateOperation(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteCertificateOperation" })
         @HTTP(path = "certificates/{certificate-name}/pending", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteCertificateOperation(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteCertificateOperation(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase mergeCertificate" })
         @POST("certificates/{certificate-name}/pending/merge")
-        Observable<Response<ResponseBody>> mergeCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Body CertificateMergeParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> mergeCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body CertificateMergeParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedCertificates" })
         @GET("deletedcertificates")
-        Observable<Response<ResponseBody>> getDeletedCertificates(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getDeletedCertificates(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedCertificate" })
         @GET("deletedcertificates/{certificate-name}")
-        Observable<Response<ResponseBody>> getDeletedCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getDeletedCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase purgeDeletedCertificate" })
         @HTTP(path = "deletedcertificates/{certificate-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> purgeDeletedCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> purgeDeletedCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase recoverDeletedCertificate" })
         @POST("deletedcertificates/{certificate-name}/recover")
-        Observable<Response<ResponseBody>> recoverDeletedCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> recoverDeletedCertificate(@Path("certificate-name") String certificateName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getStorageAccounts" })
         @GET("storage")
-        Observable<Response<ResponseBody>> getStorageAccounts(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getStorageAccounts(@Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteStorageAccount" })
         @HTTP(path = "storage/{storage-account-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getStorageAccount" })
         @GET("storage/{storage-account-name}")
-        Observable<Response<ResponseBody>> getStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase setStorageAccount" })
         @PUT("storage/{storage-account-name}")
-        Observable<Response<ResponseBody>> setStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Body StorageAccountCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> setStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body StorageAccountCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateStorageAccount" })
         @PATCH("storage/{storage-account-name}")
-        Observable<Response<ResponseBody>> updateStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Body StorageAccountUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateStorageAccount(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body StorageAccountUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase regenerateStorageAccountKey" })
         @POST("storage/{storage-account-name}/regeneratekey")
-        Observable<Response<ResponseBody>> regenerateStorageAccountKey(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Body StorageAccountRegenerteKeyParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> regenerateStorageAccountKey(@Path("storage-account-name") String storageAccountName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body StorageAccountRegenerteKeyParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSasDefinitions" })
         @GET("storage/{storage-account-name}/sas")
-        Observable<Response<ResponseBody>> getSasDefinitions(@Path("storage-account-name") String storageAccountName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getSasDefinitions(@Path("storage-account-name") String storageAccountName, @Query("maxresults") Integer maxresults, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase deleteSasDefinition" })
         @HTTP(path = "storage/{storage-account-name}/sas/{sas-definition-name}", method = "DELETE", hasBody = true)
-        Observable<Response<ResponseBody>> deleteSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> deleteSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSasDefinition" })
         @GET("storage/{storage-account-name}/sas/{sas-definition-name}")
-        Observable<Response<ResponseBody>> getSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> getSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase setSasDefinition" })
         @PUT("storage/{storage-account-name}/sas/{sas-definition-name}")
-        Observable<Response<ResponseBody>> setSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Body SasDefinitionCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> setSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SasDefinitionCreateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
 
         @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase updateSasDefinition" })
         @PATCH("storage/{storage-account-name}/sas/{sas-definition-name}")
-        Observable<Response<ResponseBody>> updateSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Body SasDefinitionUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost);
+        Observable<Response<ResponseBody>> updateSasDefinition(@Path("storage-account-name") String storageAccountName, @Path("sas-definition-name") String sasDefinitionName, @Query("api-version") String apiVersion, @Header("accept-language") String acceptLanguage, @Body SasDefinitionUpdateParameters parameters, @Header("x-ms-parameterized-host") String parameterizedHost, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getKeyVersionsNext" })
+        @GET
+        Observable<Response<ResponseBody>> getKeyVersionsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getKeysNext" })
+        @GET
+        Observable<Response<ResponseBody>> getKeysNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedKeysNext" })
+        @GET
+        Observable<Response<ResponseBody>> getDeletedKeysNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSecretsNext" })
+        @GET
+        Observable<Response<ResponseBody>> getSecretsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSecretVersionsNext" })
+        @GET
+        Observable<Response<ResponseBody>> getSecretVersionsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedSecretsNext" })
+        @GET
+        Observable<Response<ResponseBody>> getDeletedSecretsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificatesNext" })
+        @GET
+        Observable<Response<ResponseBody>> getCertificatesNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificateIssuersNext" })
+        @GET
+        Observable<Response<ResponseBody>> getCertificateIssuersNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getCertificateVersionsNext" })
+        @GET
+        Observable<Response<ResponseBody>> getCertificateVersionsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getDeletedCertificatesNext" })
+        @GET
+        Observable<Response<ResponseBody>> getDeletedCertificatesNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getStorageAccountsNext" })
+        @GET
+        Observable<Response<ResponseBody>> getStorageAccountsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
+
+        @Headers({ "Content-Type: application/json; charset=utf-8", "x-ms-logging-context: .KeyVaultClientBase getSasDefinitionsNext" })
+        @GET
+        Observable<Response<ResponseBody>> getSasDefinitionsNext(@Url String nextUrl, @Header("accept-language") String acceptLanguage, @Header("User-Agent") String userAgent);
 
     }
 
@@ -545,18 +660,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withKeyAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.createKey(keyName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = createKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.createKey(keyName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = createKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -658,18 +773,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withKeyAttributes(keyAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.createKey(keyName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = createKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.createKey(keyName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = createKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyBundle> createKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -762,18 +877,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withKeyAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.importKey(keyName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = importKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.importKey(keyName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = importKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -870,18 +985,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withKeyAttributes(keyAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.importKey(keyName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = importKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.importKey(keyName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = importKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyBundle> importKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -958,18 +1073,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteKey(keyName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedKeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedKeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedKeyBundle> clientResponse = deleteKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteKey(keyName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedKeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<DeletedKeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<DeletedKeyBundle> clientResponse = deleteKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<DeletedKeyBundle> deleteKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -1060,18 +1175,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withKeyAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateKey(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = updateKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateKey(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = updateKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1167,18 +1282,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withKeyAttributes(keyAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateKey(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = updateKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateKey(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = updateKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyBundle> updateKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -1262,18 +1377,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getKey(keyName, keyVersion, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = getKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getKey(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = getKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyBundle> getKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -1292,10 +1407,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    public KeyListResult getKeyVersions(String vaultBaseUrl, String keyName) {
-        return getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName).toBlocking().single().body();
+    public PagedList<KeyItem> getKeyVersions(final String vaultBaseUrl, final String keyName) {
+        ServiceResponse<Page<KeyItem>> response = getKeyVersionsSinglePageAsync(vaultBaseUrl, keyName).toBlocking().single();
+        return new PagedList<KeyItem>(response.body()) {
+            @Override
+            public Page<KeyItem> nextPage(String nextPageLink) {
+                return getKeyVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -1308,8 +1429,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName, final ServiceCallback<KeyListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName), serviceCallback);
+    public ServiceFuture<List<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName, final ListOperationCallback<KeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getKeyVersionsSinglePageAsync(vaultBaseUrl, keyName),
+                new Func1<String, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(String nextPageLink) {
+                        return getKeyVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -1319,15 +1448,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param keyName The name of the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName) {
-        return getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName).map(new Func1<ServiceResponse<KeyListResult>, KeyListResult>() {
-            @Override
-            public KeyListResult call(ServiceResponse<KeyListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName) {
+        return getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName)
+                .map(new Func1<ServiceResponse<Page<KeyItem>>, Page<KeyItem>>() {
+                    @Override
+                    public Page<KeyItem> call(ServiceResponse<Page<KeyItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -1337,9 +1467,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param keyName The name of the key.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<ServiceResponse<KeyListResult>> getKeyVersionsWithServiceResponseAsync(String vaultBaseUrl, String keyName) {
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String keyName) {
+        return getKeyVersionsSinglePageAsync(vaultBaseUrl, keyName)
+                .concatMap(new Func1<ServiceResponse<Page<KeyItem>>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(ServiceResponse<Page<KeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getKeyVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @param keyName The name of the key.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;KeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsSinglePageAsync(final String vaultBaseUrl, final String keyName) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -1351,18 +1504,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getKeyVersions(keyName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyListResult> clientResponse = getKeyVersionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getKeyVersions(keyName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<KeyItem>> result = getKeyVersionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<KeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1375,10 +1528,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    public KeyListResult getKeyVersions(String vaultBaseUrl, String keyName, Integer maxresults) {
-        return getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName, maxresults).toBlocking().single().body();
+    public PagedList<KeyItem> getKeyVersions(final String vaultBaseUrl, final String keyName, final Integer maxresults) {
+        ServiceResponse<Page<KeyItem>> response = getKeyVersionsSinglePageAsync(vaultBaseUrl, keyName, maxresults).toBlocking().single();
+        return new PagedList<KeyItem>(response.body()) {
+            @Override
+            public Page<KeyItem> nextPage(String nextPageLink) {
+                return getKeyVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -1392,8 +1551,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName, Integer maxresults, final ServiceCallback<KeyListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName, maxresults), serviceCallback);
+    public ServiceFuture<List<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName, final Integer maxresults, final ListOperationCallback<KeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getKeyVersionsSinglePageAsync(vaultBaseUrl, keyName, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(String nextPageLink) {
+                        return getKeyVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -1404,15 +1571,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param keyName The name of the key.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<KeyListResult> getKeyVersionsAsync(String vaultBaseUrl, String keyName, Integer maxresults) {
-        return getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName, maxresults).map(new Func1<ServiceResponse<KeyListResult>, KeyListResult>() {
-            @Override
-            public KeyListResult call(ServiceResponse<KeyListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<KeyItem>> getKeyVersionsAsync(final String vaultBaseUrl, final String keyName, final Integer maxresults) {
+        return getKeyVersionsWithServiceResponseAsync(vaultBaseUrl, keyName, maxresults)
+                .map(new Func1<ServiceResponse<Page<KeyItem>>, Page<KeyItem>>() {
+                    @Override
+                    public Page<KeyItem> call(ServiceResponse<Page<KeyItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -1423,9 +1591,33 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param keyName The name of the key.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<ServiceResponse<KeyListResult>> getKeyVersionsWithServiceResponseAsync(String vaultBaseUrl, String keyName, Integer maxresults) {
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String keyName, final Integer maxresults) {
+        return getKeyVersionsSinglePageAsync(vaultBaseUrl, keyName, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<KeyItem>>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(ServiceResponse<Page<KeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getKeyVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     ServiceResponse<PageImpl<KeyItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<KeyItem>> * @param keyName The name of the key.
+     ServiceResponse<PageImpl<KeyItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;KeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsSinglePageAsync(final String vaultBaseUrl, final String keyName, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -1436,23 +1628,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getKeyVersions(keyName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyListResult> clientResponse = getKeyVersionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getKeyVersions(keyName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<KeyItem>> result = getKeyVersionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<KeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<KeyListResult> getKeyVersionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<KeyListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<KeyListResult>() { }.getType())
+    private ServiceResponse<PageImpl<KeyItem>> getKeyVersionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<KeyItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<KeyItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -1465,10 +1657,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    public KeyListResult getKeys(String vaultBaseUrl) {
-        return getKeysWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<KeyItem> getKeys(final String vaultBaseUrl) {
+        ServiceResponse<Page<KeyItem>> response = getKeysSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<KeyItem>(response.body()) {
+            @Override
+            public Page<KeyItem> nextPage(String nextPageLink) {
+                return getKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -1480,8 +1678,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<KeyListResult> getKeysAsync(String vaultBaseUrl, final ServiceCallback<KeyListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getKeysWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<KeyItem>> getKeysAsync(final String vaultBaseUrl, final ListOperationCallback<KeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getKeysSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(String nextPageLink) {
+                        return getKeysNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -1490,15 +1696,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<KeyListResult> getKeysAsync(String vaultBaseUrl) {
-        return getKeysWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<KeyListResult>, KeyListResult>() {
-            @Override
-            public KeyListResult call(ServiceResponse<KeyListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<KeyItem>> getKeysAsync(final String vaultBaseUrl) {
+        return getKeysWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<KeyItem>>, Page<KeyItem>>() {
+                    @Override
+                    public Page<KeyItem> call(ServiceResponse<Page<KeyItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -1507,9 +1714,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<ServiceResponse<KeyListResult>> getKeysWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeysWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getKeysSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<KeyItem>>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(ServiceResponse<Page<KeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getKeysNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;KeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeysSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -1518,18 +1747,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getKeys(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyListResult> clientResponse = getKeysDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getKeys(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<KeyItem>> result = getKeysDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<KeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -1541,10 +1770,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the KeyListResult object if successful.
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
      */
-    public KeyListResult getKeys(String vaultBaseUrl, Integer maxresults) {
-        return getKeysWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<KeyItem> getKeys(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<KeyItem>> response = getKeysSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<KeyItem>(response.body()) {
+            @Override
+            public Page<KeyItem> nextPage(String nextPageLink) {
+                return getKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -1557,8 +1792,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<KeyListResult> getKeysAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<KeyListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getKeysWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<KeyItem>> getKeysAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<KeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getKeysSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(String nextPageLink) {
+                        return getKeysNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -1568,15 +1811,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<KeyListResult> getKeysAsync(String vaultBaseUrl, Integer maxresults) {
-        return getKeysWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<KeyListResult>, KeyListResult>() {
-            @Override
-            public KeyListResult call(ServiceResponse<KeyListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<KeyItem>> getKeysAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getKeysWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<KeyItem>>, Page<KeyItem>>() {
+                    @Override
+                    public Page<KeyItem> call(ServiceResponse<Page<KeyItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -1586,9 +1830,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the KeyListResult object
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
      */
-    public Observable<ServiceResponse<KeyListResult>> getKeysWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeysWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getKeysSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<KeyItem>>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(ServiceResponse<Page<KeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getKeysNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     ServiceResponse<PageImpl<KeyItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<KeyItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;KeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeysSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -1596,23 +1863,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getKeys(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyListResult> clientResponse = getKeysDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getKeys(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<KeyItem>> result = getKeysDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<KeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<KeyListResult> getKeysDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<KeyListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<KeyListResult>() { }.getType())
+    private ServiceResponse<PageImpl<KeyItem>> getKeysDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<KeyItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<KeyItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -1684,18 +1951,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.backupKey(keyName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<BackupKeyResult>>>() {
-                @Override
-                public Observable<ServiceResponse<BackupKeyResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<BackupKeyResult> clientResponse = backupKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.backupKey(keyName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<BackupKeyResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<BackupKeyResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<BackupKeyResult> clientResponse = backupKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<BackupKeyResult> backupKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -1774,18 +2041,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         KeyRestoreParameters parameters = new KeyRestoreParameters();
         parameters.withKeyBundleBackup(keyBundleBackup);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.restoreKey(this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = restoreKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.restoreKey(this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = restoreKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyBundle> restoreKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -1886,18 +2153,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withAlgorithm(algorithm);
         parameters.withValue(value);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.encrypt(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyOperationResult> clientResponse = encryptDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.encrypt(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyOperationResult> clientResponse = encryptDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyOperationResult> encryptDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -1998,18 +2265,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withAlgorithm(algorithm);
         parameters.withValue(value);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.decrypt(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyOperationResult> clientResponse = decryptDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.decrypt(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyOperationResult> clientResponse = decryptDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyOperationResult> decryptDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2110,18 +2377,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withAlgorithm(algorithm);
         parameters.withValue(value);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.sign(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyOperationResult> clientResponse = signDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.sign(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyOperationResult> clientResponse = signDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyOperationResult> signDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2230,18 +2497,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withDigest(digest);
         parameters.withSignature(signature);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.verify(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyVerifyResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyVerifyResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyVerifyResult> clientResponse = verifyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.verify(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyVerifyResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyVerifyResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyVerifyResult> clientResponse = verifyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyVerifyResult> verifyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2342,18 +2609,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withAlgorithm(algorithm);
         parameters.withValue(value);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.wrapKey(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyOperationResult> clientResponse = wrapKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.wrapKey(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyOperationResult> clientResponse = wrapKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyOperationResult> wrapKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2454,18 +2721,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withAlgorithm(algorithm);
         parameters.withValue(value);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.unwrapKey(keyName, keyVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyOperationResult> clientResponse = unwrapKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.unwrapKey(keyName, keyVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyOperationResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyOperationResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyOperationResult> clientResponse = unwrapKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyOperationResult> unwrapKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2482,10 +2749,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedKeyListResult object if successful.
+     * @return the PagedList&lt;DeletedKeyItem&gt; object if successful.
      */
-    public DeletedKeyListResult getDeletedKeys(String vaultBaseUrl) {
-        return getDeletedKeysWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<DeletedKeyItem> getDeletedKeys(final String vaultBaseUrl) {
+        ServiceResponse<Page<DeletedKeyItem>> response = getDeletedKeysSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<DeletedKeyItem>(response.body()) {
+            @Override
+            public Page<DeletedKeyItem> nextPage(String nextPageLink) {
+                return getDeletedKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -2496,8 +2769,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl, final ServiceCallback<DeletedKeyListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getDeletedKeysWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl, final ListOperationCallback<DeletedKeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedKeysSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(String nextPageLink) {
+                        return getDeletedKeysNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -2505,15 +2786,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    public Observable<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl) {
-        return getDeletedKeysWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<DeletedKeyListResult>, DeletedKeyListResult>() {
-            @Override
-            public DeletedKeyListResult call(ServiceResponse<DeletedKeyListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl) {
+        return getDeletedKeysWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<DeletedKeyItem>>, Page<DeletedKeyItem>>() {
+                    @Override
+                    public Page<DeletedKeyItem> call(ServiceResponse<Page<DeletedKeyItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -2521,9 +2803,30 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    public Observable<ServiceResponse<DeletedKeyListResult>> getDeletedKeysWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getDeletedKeysSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedKeyItem>>, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(ServiceResponse<Page<DeletedKeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedKeysNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedKeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -2532,18 +2835,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedKeys(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedKeyListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedKeyListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedKeyListResult> clientResponse = getDeletedKeysDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedKeys(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedKeyItem>> result = getDeletedKeysDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedKeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -2554,10 +2857,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedKeyListResult object if successful.
+     * @return the PagedList&lt;DeletedKeyItem&gt; object if successful.
      */
-    public DeletedKeyListResult getDeletedKeys(String vaultBaseUrl, Integer maxresults) {
-        return getDeletedKeysWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<DeletedKeyItem> getDeletedKeys(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<DeletedKeyItem>> response = getDeletedKeysSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<DeletedKeyItem>(response.body()) {
+            @Override
+            public Page<DeletedKeyItem> nextPage(String nextPageLink) {
+                return getDeletedKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -2569,8 +2878,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<DeletedKeyListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getDeletedKeysWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<DeletedKeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedKeysSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(String nextPageLink) {
+                        return getDeletedKeysNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -2579,15 +2896,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    public Observable<DeletedKeyListResult> getDeletedKeysAsync(String vaultBaseUrl, Integer maxresults) {
-        return getDeletedKeysWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<DeletedKeyListResult>, DeletedKeyListResult>() {
-            @Override
-            public DeletedKeyListResult call(ServiceResponse<DeletedKeyListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<DeletedKeyItem>> getDeletedKeysAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getDeletedKeysWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<DeletedKeyItem>>, Page<DeletedKeyItem>>() {
+                    @Override
+                    public Page<DeletedKeyItem> call(ServiceResponse<Page<DeletedKeyItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -2596,9 +2914,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedKeyListResult object
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
      */
-    public Observable<ServiceResponse<DeletedKeyListResult>> getDeletedKeysWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getDeletedKeysSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedKeyItem>>, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(ServiceResponse<Page<DeletedKeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedKeysNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     ServiceResponse<PageImpl<DeletedKeyItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<DeletedKeyItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedKeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -2606,23 +2946,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedKeys(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedKeyListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedKeyListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedKeyListResult> clientResponse = getDeletedKeysDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedKeys(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedKeyItem>> result = getDeletedKeysDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedKeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<DeletedKeyListResult> getDeletedKeysDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<DeletedKeyListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<DeletedKeyListResult>() { }.getType())
+    private ServiceResponse<PageImpl<DeletedKeyItem>> getDeletedKeysDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<DeletedKeyItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DeletedKeyItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -2690,18 +3030,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedKey(keyName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedKeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedKeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedKeyBundle> clientResponse = getDeletedKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedKey(keyName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedKeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<DeletedKeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<DeletedKeyBundle> clientResponse = getDeletedKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<DeletedKeyBundle> getDeletedKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2773,18 +3113,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.purgeDeletedKey(keyName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
-                @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<Void> clientResponse = purgeDeletedKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.purgeDeletedKey(keyName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<Void> clientResponse = purgeDeletedKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<Void> purgeDeletedKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2857,18 +3197,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.recoverDeletedKey(keyName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<KeyBundle> clientResponse = recoverDeletedKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.recoverDeletedKey(keyName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<KeyBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<KeyBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<KeyBundle> clientResponse = recoverDeletedKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<KeyBundle> recoverDeletedKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -2960,18 +3300,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withContentType(null);
         parameters.withSecretAttributes(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setSecret(secretName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretBundle> clientResponse = setSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setSecret(secretName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SecretBundle> clientResponse = setSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -3067,18 +3407,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withContentType(contentType);
         parameters.withSecretAttributes(secretAttributes);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setSecret(secretName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretBundle> clientResponse = setSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setSecret(secretName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SecretBundle> clientResponse = setSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SecretBundle> setSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -3155,18 +3495,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteSecret(secretName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedSecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedSecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedSecretBundle> clientResponse = deleteSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteSecret(secretName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedSecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<DeletedSecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<DeletedSecretBundle> clientResponse = deleteSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<DeletedSecretBundle> deleteSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -3257,18 +3597,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withSecretAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateSecret(secretName, secretVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretBundle> clientResponse = updateSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateSecret(secretName, secretVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SecretBundle> clientResponse = updateSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -3363,18 +3703,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withSecretAttributes(secretAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateSecret(secretName, secretVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretBundle> clientResponse = updateSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateSecret(secretName, secretVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SecretBundle> clientResponse = updateSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SecretBundle> updateSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -3458,18 +3798,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSecret(secretName, secretVersion, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretBundle> clientResponse = getSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSecret(secretName, secretVersion, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SecretBundle> clientResponse = getSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SecretBundle> getSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -3487,10 +3827,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    public SecretListResult getSecrets(String vaultBaseUrl) {
-        return getSecretsWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<SecretItem> getSecrets(final String vaultBaseUrl) {
+        ServiceResponse<Page<SecretItem>> response = getSecretsSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<SecretItem>(response.body()) {
+            @Override
+            public Page<SecretItem> nextPage(String nextPageLink) {
+                return getSecretsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -3502,8 +3848,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SecretListResult> getSecretsAsync(String vaultBaseUrl, final ServiceCallback<SecretListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getSecretsWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<SecretItem>> getSecretsAsync(final String vaultBaseUrl, final ListOperationCallback<SecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSecretsSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(String nextPageLink) {
+                        return getSecretsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -3512,15 +3866,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<SecretListResult> getSecretsAsync(String vaultBaseUrl) {
-        return getSecretsWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<SecretListResult>, SecretListResult>() {
-            @Override
-            public SecretListResult call(ServiceResponse<SecretListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<SecretItem>> getSecretsAsync(final String vaultBaseUrl) {
+        return getSecretsWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<SecretItem>>, Page<SecretItem>>() {
+                    @Override
+                    public Page<SecretItem> call(ServiceResponse<Page<SecretItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -3529,9 +3884,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<ServiceResponse<SecretListResult>> getSecretsWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretsWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getSecretsSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<SecretItem>>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(ServiceResponse<Page<SecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSecretsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretsSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -3540,18 +3917,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSecrets(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretListResult> clientResponse = getSecretsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSecrets(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SecretItem>> result = getSecretsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -3563,10 +3940,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    public SecretListResult getSecrets(String vaultBaseUrl, Integer maxresults) {
-        return getSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<SecretItem> getSecrets(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<SecretItem>> response = getSecretsSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<SecretItem>(response.body()) {
+            @Override
+            public Page<SecretItem> nextPage(String nextPageLink) {
+                return getSecretsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -3579,8 +3962,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SecretListResult> getSecretsAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<SecretListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<SecretItem>> getSecretsAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<SecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSecretsSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(String nextPageLink) {
+                        return getSecretsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -3590,15 +3981,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<SecretListResult> getSecretsAsync(String vaultBaseUrl, Integer maxresults) {
-        return getSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<SecretListResult>, SecretListResult>() {
-            @Override
-            public SecretListResult call(ServiceResponse<SecretListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<SecretItem>> getSecretsAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<SecretItem>>, Page<SecretItem>>() {
+                    @Override
+                    public Page<SecretItem> call(ServiceResponse<Page<SecretItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -3608,9 +4000,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<ServiceResponse<SecretListResult>> getSecretsWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretsWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getSecretsSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<SecretItem>>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(ServiceResponse<Page<SecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSecretsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     ServiceResponse<PageImpl<SecretItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<SecretItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretsSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -3618,23 +4033,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSecrets(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretListResult> clientResponse = getSecretsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSecrets(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SecretItem>> result = getSecretsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<SecretListResult> getSecretsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<SecretListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<SecretListResult>() { }.getType())
+    private ServiceResponse<PageImpl<SecretItem>> getSecretsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<SecretItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SecretItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -3648,10 +4063,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    public SecretListResult getSecretVersions(String vaultBaseUrl, String secretName) {
-        return getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName).toBlocking().single().body();
+    public PagedList<SecretItem> getSecretVersions(final String vaultBaseUrl, final String secretName) {
+        ServiceResponse<Page<SecretItem>> response = getSecretVersionsSinglePageAsync(vaultBaseUrl, secretName).toBlocking().single();
+        return new PagedList<SecretItem>(response.body()) {
+            @Override
+            public Page<SecretItem> nextPage(String nextPageLink) {
+                return getSecretVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -3664,8 +4085,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName, final ServiceCallback<SecretListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName), serviceCallback);
+    public ServiceFuture<List<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName, final ListOperationCallback<SecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSecretVersionsSinglePageAsync(vaultBaseUrl, secretName),
+                new Func1<String, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(String nextPageLink) {
+                        return getSecretVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -3675,15 +4104,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param secretName The name of the secret.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName) {
-        return getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName).map(new Func1<ServiceResponse<SecretListResult>, SecretListResult>() {
-            @Override
-            public SecretListResult call(ServiceResponse<SecretListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName) {
+        return getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName)
+                .map(new Func1<ServiceResponse<Page<SecretItem>>, Page<SecretItem>>() {
+                    @Override
+                    public Page<SecretItem> call(ServiceResponse<Page<SecretItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -3693,9 +4123,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param secretName The name of the secret.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<ServiceResponse<SecretListResult>> getSecretVersionsWithServiceResponseAsync(String vaultBaseUrl, String secretName) {
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String secretName) {
+        return getSecretVersionsSinglePageAsync(vaultBaseUrl, secretName)
+                .concatMap(new Func1<ServiceResponse<Page<SecretItem>>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(ServiceResponse<Page<SecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSecretVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @param secretName The name of the secret.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsSinglePageAsync(final String vaultBaseUrl, final String secretName) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -3707,18 +4160,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSecretVersions(secretName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretListResult> clientResponse = getSecretVersionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSecretVersions(secretName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SecretItem>> result = getSecretVersionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -3731,10 +4184,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SecretListResult object if successful.
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
      */
-    public SecretListResult getSecretVersions(String vaultBaseUrl, String secretName, Integer maxresults) {
-        return getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName, maxresults).toBlocking().single().body();
+    public PagedList<SecretItem> getSecretVersions(final String vaultBaseUrl, final String secretName, final Integer maxresults) {
+        ServiceResponse<Page<SecretItem>> response = getSecretVersionsSinglePageAsync(vaultBaseUrl, secretName, maxresults).toBlocking().single();
+        return new PagedList<SecretItem>(response.body()) {
+            @Override
+            public Page<SecretItem> nextPage(String nextPageLink) {
+                return getSecretVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -3748,8 +4207,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName, Integer maxresults, final ServiceCallback<SecretListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName, maxresults), serviceCallback);
+    public ServiceFuture<List<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName, final Integer maxresults, final ListOperationCallback<SecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSecretVersionsSinglePageAsync(vaultBaseUrl, secretName, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(String nextPageLink) {
+                        return getSecretVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -3760,15 +4227,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param secretName The name of the secret.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<SecretListResult> getSecretVersionsAsync(String vaultBaseUrl, String secretName, Integer maxresults) {
-        return getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName, maxresults).map(new Func1<ServiceResponse<SecretListResult>, SecretListResult>() {
-            @Override
-            public SecretListResult call(ServiceResponse<SecretListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<SecretItem>> getSecretVersionsAsync(final String vaultBaseUrl, final String secretName, final Integer maxresults) {
+        return getSecretVersionsWithServiceResponseAsync(vaultBaseUrl, secretName, maxresults)
+                .map(new Func1<ServiceResponse<Page<SecretItem>>, Page<SecretItem>>() {
+                    @Override
+                    public Page<SecretItem> call(ServiceResponse<Page<SecretItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -3779,9 +4247,33 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param secretName The name of the secret.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SecretListResult object
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
      */
-    public Observable<ServiceResponse<SecretListResult>> getSecretVersionsWithServiceResponseAsync(String vaultBaseUrl, String secretName, Integer maxresults) {
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String secretName, final Integer maxresults) {
+        return getSecretVersionsSinglePageAsync(vaultBaseUrl, secretName, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<SecretItem>>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(ServiceResponse<Page<SecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSecretVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     ServiceResponse<PageImpl<SecretItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<SecretItem>> * @param secretName The name of the secret.
+     ServiceResponse<PageImpl<SecretItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsSinglePageAsync(final String vaultBaseUrl, final String secretName, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -3792,23 +4284,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSecretVersions(secretName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretListResult> clientResponse = getSecretVersionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSecretVersions(secretName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SecretItem>> result = getSecretVersionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<SecretListResult> getSecretVersionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<SecretListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<SecretListResult>() { }.getType())
+    private ServiceResponse<PageImpl<SecretItem>> getSecretVersionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<SecretItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SecretItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -3820,10 +4312,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedSecretListResult object if successful.
+     * @return the PagedList&lt;DeletedSecretItem&gt; object if successful.
      */
-    public DeletedSecretListResult getDeletedSecrets(String vaultBaseUrl) {
-        return getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<DeletedSecretItem> getDeletedSecrets(final String vaultBaseUrl) {
+        ServiceResponse<Page<DeletedSecretItem>> response = getDeletedSecretsSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<DeletedSecretItem>(response.body()) {
+            @Override
+            public Page<DeletedSecretItem> nextPage(String nextPageLink) {
+                return getDeletedSecretsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -3834,8 +4332,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl, final ServiceCallback<DeletedSecretListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl, final ListOperationCallback<DeletedSecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedSecretsSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(String nextPageLink) {
+                        return getDeletedSecretsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -3843,15 +4349,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    public Observable<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl) {
-        return getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<DeletedSecretListResult>, DeletedSecretListResult>() {
-            @Override
-            public DeletedSecretListResult call(ServiceResponse<DeletedSecretListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl) {
+        return getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<DeletedSecretItem>>, Page<DeletedSecretItem>>() {
+                    @Override
+                    public Page<DeletedSecretItem> call(ServiceResponse<Page<DeletedSecretItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -3859,9 +4366,30 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    public Observable<ServiceResponse<DeletedSecretListResult>> getDeletedSecretsWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getDeletedSecretsSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedSecretItem>>, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(ServiceResponse<Page<DeletedSecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedSecretsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedSecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -3870,18 +4398,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedSecrets(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedSecretListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedSecretListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedSecretListResult> clientResponse = getDeletedSecretsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedSecrets(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedSecretItem>> result = getDeletedSecretsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedSecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -3892,10 +4420,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedSecretListResult object if successful.
+     * @return the PagedList&lt;DeletedSecretItem&gt; object if successful.
      */
-    public DeletedSecretListResult getDeletedSecrets(String vaultBaseUrl, Integer maxresults) {
-        return getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<DeletedSecretItem> getDeletedSecrets(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<DeletedSecretItem>> response = getDeletedSecretsSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<DeletedSecretItem>(response.body()) {
+            @Override
+            public Page<DeletedSecretItem> nextPage(String nextPageLink) {
+                return getDeletedSecretsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -3907,8 +4441,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<DeletedSecretListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<DeletedSecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedSecretsSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(String nextPageLink) {
+                        return getDeletedSecretsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -3917,15 +4459,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    public Observable<DeletedSecretListResult> getDeletedSecretsAsync(String vaultBaseUrl, Integer maxresults) {
-        return getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<DeletedSecretListResult>, DeletedSecretListResult>() {
-            @Override
-            public DeletedSecretListResult call(ServiceResponse<DeletedSecretListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<DeletedSecretItem>> getDeletedSecretsAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getDeletedSecretsWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<DeletedSecretItem>>, Page<DeletedSecretItem>>() {
+                    @Override
+                    public Page<DeletedSecretItem> call(ServiceResponse<Page<DeletedSecretItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -3934,9 +4477,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedSecretListResult object
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
      */
-    public Observable<ServiceResponse<DeletedSecretListResult>> getDeletedSecretsWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getDeletedSecretsSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedSecretItem>>, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(ServiceResponse<Page<DeletedSecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedSecretsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     ServiceResponse<PageImpl<DeletedSecretItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<DeletedSecretItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedSecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -3944,23 +4509,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedSecrets(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedSecretListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedSecretListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedSecretListResult> clientResponse = getDeletedSecretsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedSecrets(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedSecretItem>> result = getDeletedSecretsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedSecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<DeletedSecretListResult> getDeletedSecretsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<DeletedSecretListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<DeletedSecretListResult>() { }.getType())
+    private ServiceResponse<PageImpl<DeletedSecretItem>> getDeletedSecretsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<DeletedSecretItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DeletedSecretItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -4028,18 +4593,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedSecret(secretName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedSecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedSecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedSecretBundle> clientResponse = getDeletedSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedSecret(secretName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedSecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<DeletedSecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<DeletedSecretBundle> clientResponse = getDeletedSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<DeletedSecretBundle> getDeletedSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4111,18 +4676,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.purgeDeletedSecret(secretName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
-                @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<Void> clientResponse = purgeDeletedSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.purgeDeletedSecret(secretName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<Void> clientResponse = purgeDeletedSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<Void> purgeDeletedSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4195,18 +4760,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.recoverDeletedSecret(secretName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretBundle> clientResponse = recoverDeletedSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.recoverDeletedSecret(secretName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SecretBundle> clientResponse = recoverDeletedSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SecretBundle> recoverDeletedSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4279,18 +4844,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.backupSecret(secretName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<BackupSecretResult>>>() {
-                @Override
-                public Observable<ServiceResponse<BackupSecretResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<BackupSecretResult> clientResponse = backupSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.backupSecret(secretName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<BackupSecretResult>>>() {
+                    @Override
+                    public Observable<ServiceResponse<BackupSecretResult>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<BackupSecretResult> clientResponse = backupSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<BackupSecretResult> backupSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4365,18 +4930,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         SecretRestoreParameters parameters = new SecretRestoreParameters();
         parameters.withSecretBundleBackup(secretBundleBackup);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.restoreSecret(this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SecretBundle> clientResponse = restoreSecretDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.restoreSecret(this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SecretBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SecretBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SecretBundle> clientResponse = restoreSecretDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SecretBundle> restoreSecretDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4394,10 +4959,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    public CertificateListResult getCertificates(String vaultBaseUrl) {
-        return getCertificatesWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<CertificateItem> getCertificates(final String vaultBaseUrl) {
+        ServiceResponse<Page<CertificateItem>> response = getCertificatesSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<CertificateItem>(response.body()) {
+            @Override
+            public Page<CertificateItem> nextPage(String nextPageLink) {
+                return getCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -4409,8 +4980,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CertificateListResult> getCertificatesAsync(String vaultBaseUrl, final ServiceCallback<CertificateListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getCertificatesWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl, final ListOperationCallback<CertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificatesSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(String nextPageLink) {
+                        return getCertificatesNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -4419,15 +4998,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<CertificateListResult> getCertificatesAsync(String vaultBaseUrl) {
-        return getCertificatesWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<CertificateListResult>, CertificateListResult>() {
-            @Override
-            public CertificateListResult call(ServiceResponse<CertificateListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl) {
+        return getCertificatesWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<CertificateItem>>, Page<CertificateItem>>() {
+                    @Override
+                    public Page<CertificateItem> call(ServiceResponse<Page<CertificateItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -4436,9 +5016,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<ServiceResponse<CertificateListResult>> getCertificatesWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getCertificatesSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateItem>>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(ServiceResponse<Page<CertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificatesNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -4447,18 +5049,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificates(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateListResult> clientResponse = getCertificatesDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificates(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateItem>> result = getCertificatesDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -4470,10 +5072,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    public CertificateListResult getCertificates(String vaultBaseUrl, Integer maxresults) {
-        return getCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<CertificateItem> getCertificates(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<CertificateItem>> response = getCertificatesSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<CertificateItem>(response.body()) {
+            @Override
+            public Page<CertificateItem> nextPage(String nextPageLink) {
+                return getCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -4486,8 +5094,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CertificateListResult> getCertificatesAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<CertificateListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<CertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificatesSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(String nextPageLink) {
+                        return getCertificatesNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -4497,15 +5113,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<CertificateListResult> getCertificatesAsync(String vaultBaseUrl, Integer maxresults) {
-        return getCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<CertificateListResult>, CertificateListResult>() {
-            @Override
-            public CertificateListResult call(ServiceResponse<CertificateListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<CertificateItem>> getCertificatesAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<CertificateItem>>, Page<CertificateItem>>() {
+                    @Override
+                    public Page<CertificateItem> call(ServiceResponse<Page<CertificateItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -4515,9 +5132,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<ServiceResponse<CertificateListResult>> getCertificatesWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getCertificatesSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateItem>>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(ServiceResponse<Page<CertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificatesNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     ServiceResponse<PageImpl<CertificateItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<CertificateItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -4525,23 +5165,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificates(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateListResult> clientResponse = getCertificatesDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificates(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateItem>> result = getCertificatesDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<CertificateListResult> getCertificatesDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<CertificateListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<CertificateListResult>() { }.getType())
+    private ServiceResponse<PageImpl<CertificateItem>> getCertificatesDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<CertificateItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<CertificateItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -4613,18 +5253,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteCertificate(certificateName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedCertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedCertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedCertificateBundle> clientResponse = deleteCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedCertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<DeletedCertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<DeletedCertificateBundle> clientResponse = deleteCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<DeletedCertificateBundle> deleteCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4702,18 +5342,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         Validator.validate(contacts);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setCertificateContacts(contacts, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Contacts>>>() {
-                @Override
-                public Observable<ServiceResponse<Contacts>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<Contacts> clientResponse = setCertificateContactsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setCertificateContacts(contacts, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Contacts>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Contacts>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<Contacts> clientResponse = setCertificateContactsDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<Contacts> setCertificateContactsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4783,18 +5423,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificateContacts(this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Contacts>>>() {
-                @Override
-                public Observable<ServiceResponse<Contacts>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<Contacts> clientResponse = getCertificateContactsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificateContacts(this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Contacts>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Contacts>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<Contacts> clientResponse = getCertificateContactsDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<Contacts> getCertificateContactsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4864,18 +5504,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteCertificateContacts(this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Contacts>>>() {
-                @Override
-                public Observable<ServiceResponse<Contacts>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<Contacts> clientResponse = deleteCertificateContactsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteCertificateContacts(this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Contacts>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Contacts>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<Contacts> clientResponse = deleteCertificateContactsDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<Contacts> deleteCertificateContactsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -4893,10 +5533,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateIssuerListResult object if successful.
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object if successful.
      */
-    public CertificateIssuerListResult getCertificateIssuers(String vaultBaseUrl) {
-        return getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<CertificateIssuerItem> getCertificateIssuers(final String vaultBaseUrl) {
+        ServiceResponse<Page<CertificateIssuerItem>> response = getCertificateIssuersSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<CertificateIssuerItem>(response.body()) {
+            @Override
+            public Page<CertificateIssuerItem> nextPage(String nextPageLink) {
+                return getCertificateIssuersNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -4908,8 +5554,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl, final ServiceCallback<CertificateIssuerListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl, final ListOperationCallback<CertificateIssuerItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificateIssuersSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(String nextPageLink) {
+                        return getCertificateIssuersNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -4918,15 +5572,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    public Observable<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl) {
-        return getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<CertificateIssuerListResult>, CertificateIssuerListResult>() {
-            @Override
-            public CertificateIssuerListResult call(ServiceResponse<CertificateIssuerListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl) {
+        return getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<CertificateIssuerItem>>, Page<CertificateIssuerItem>>() {
+                    @Override
+                    public Page<CertificateIssuerItem> call(ServiceResponse<Page<CertificateIssuerItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -4935,9 +5590,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    public Observable<ServiceResponse<CertificateIssuerListResult>> getCertificateIssuersWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getCertificateIssuersSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateIssuerItem>>, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(ServiceResponse<Page<CertificateIssuerItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificateIssuersNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -4946,18 +5623,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificateIssuers(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateIssuerListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateIssuerListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateIssuerListResult> clientResponse = getCertificateIssuersDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificateIssuers(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateIssuerItem>> result = getCertificateIssuersDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateIssuerItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -4969,10 +5646,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateIssuerListResult object if successful.
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object if successful.
      */
-    public CertificateIssuerListResult getCertificateIssuers(String vaultBaseUrl, Integer maxresults) {
-        return getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<CertificateIssuerItem> getCertificateIssuers(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<CertificateIssuerItem>> response = getCertificateIssuersSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<CertificateIssuerItem>(response.body()) {
+            @Override
+            public Page<CertificateIssuerItem> nextPage(String nextPageLink) {
+                return getCertificateIssuersNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -4985,8 +5668,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<CertificateIssuerListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<CertificateIssuerItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificateIssuersSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(String nextPageLink) {
+                        return getCertificateIssuersNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -4996,15 +5687,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    public Observable<CertificateIssuerListResult> getCertificateIssuersAsync(String vaultBaseUrl, Integer maxresults) {
-        return getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<CertificateIssuerListResult>, CertificateIssuerListResult>() {
-            @Override
-            public CertificateIssuerListResult call(ServiceResponse<CertificateIssuerListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<CertificateIssuerItem>> getCertificateIssuersAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getCertificateIssuersWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<CertificateIssuerItem>>, Page<CertificateIssuerItem>>() {
+                    @Override
+                    public Page<CertificateIssuerItem> call(ServiceResponse<Page<CertificateIssuerItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -5014,9 +5706,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateIssuerListResult object
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
      */
-    public Observable<ServiceResponse<CertificateIssuerListResult>> getCertificateIssuersWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getCertificateIssuersSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateIssuerItem>>, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(ServiceResponse<Page<CertificateIssuerItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificateIssuersNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     ServiceResponse<PageImpl<CertificateIssuerItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<CertificateIssuerItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -5024,23 +5739,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificateIssuers(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateIssuerListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateIssuerListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateIssuerListResult> clientResponse = getCertificateIssuersDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificateIssuers(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateIssuerItem>> result = getCertificateIssuersDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateIssuerItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<CertificateIssuerListResult> getCertificateIssuersDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<CertificateIssuerListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<CertificateIssuerListResult>() { }.getType())
+    private ServiceResponse<PageImpl<CertificateIssuerItem>> getCertificateIssuersDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<CertificateIssuerItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<CertificateIssuerItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -5127,18 +5842,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameter.withOrganizationDetails(null);
         parameter.withAttributes(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setCertificateIssuer(issuerName, this.apiVersion(), parameter, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<IssuerBundle> clientResponse = setCertificateIssuerDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setCertificateIssuer(issuerName, this.apiVersion(), this.acceptLanguage(), parameter, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<IssuerBundle> clientResponse = setCertificateIssuerDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -5235,18 +5950,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameter.withOrganizationDetails(organizationDetails);
         parameter.withAttributes(attributes);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setCertificateIssuer(issuerName, this.apiVersion(), parameter, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<IssuerBundle> clientResponse = setCertificateIssuerDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setCertificateIssuer(issuerName, this.apiVersion(), this.acceptLanguage(), parameter, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<IssuerBundle> clientResponse = setCertificateIssuerDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<IssuerBundle> setCertificateIssuerDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -5332,18 +6047,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameter.withOrganizationDetails(null);
         parameter.withAttributes(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateCertificateIssuer(issuerName, this.apiVersion(), parameter, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<IssuerBundle> clientResponse = updateCertificateIssuerDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateCertificateIssuer(issuerName, this.apiVersion(), this.acceptLanguage(), parameter, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<IssuerBundle> clientResponse = updateCertificateIssuerDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -5437,18 +6152,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameter.withOrganizationDetails(organizationDetails);
         parameter.withAttributes(attributes);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateCertificateIssuer(issuerName, this.apiVersion(), parameter, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<IssuerBundle> clientResponse = updateCertificateIssuerDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateCertificateIssuer(issuerName, this.apiVersion(), this.acceptLanguage(), parameter, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<IssuerBundle> clientResponse = updateCertificateIssuerDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<IssuerBundle> updateCertificateIssuerDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -5525,18 +6240,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificateIssuer(issuerName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<IssuerBundle> clientResponse = getCertificateIssuerDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificateIssuer(issuerName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<IssuerBundle> clientResponse = getCertificateIssuerDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<IssuerBundle> getCertificateIssuerDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -5613,18 +6328,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteCertificateIssuer(issuerName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<IssuerBundle> clientResponse = deleteCertificateIssuerDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteCertificateIssuer(issuerName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<IssuerBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<IssuerBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<IssuerBundle> clientResponse = deleteCertificateIssuerDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<IssuerBundle> deleteCertificateIssuerDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -5708,18 +6423,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.createCertificate(certificateName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateOperation> clientResponse = createCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.createCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateOperation> clientResponse = createCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -5808,18 +6523,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(certificateAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.createCertificate(certificateName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateOperation> clientResponse = createCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.createCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateOperation> clientResponse = createCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateOperation> createCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -5913,18 +6628,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.importCertificate(certificateName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = importCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.importCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = importCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -6026,18 +6741,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(certificateAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.importCertificate(certificateName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = importCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.importCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = importCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateBundle> importCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -6056,10 +6771,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    public CertificateListResult getCertificateVersions(String vaultBaseUrl, String certificateName) {
-        return getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName).toBlocking().single().body();
+    public PagedList<CertificateItem> getCertificateVersions(final String vaultBaseUrl, final String certificateName) {
+        ServiceResponse<Page<CertificateItem>> response = getCertificateVersionsSinglePageAsync(vaultBaseUrl, certificateName).toBlocking().single();
+        return new PagedList<CertificateItem>(response.body()) {
+            @Override
+            public Page<CertificateItem> nextPage(String nextPageLink) {
+                return getCertificateVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -6072,8 +6793,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName, final ServiceCallback<CertificateListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName), serviceCallback);
+    public ServiceFuture<List<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName, final ListOperationCallback<CertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificateVersionsSinglePageAsync(vaultBaseUrl, certificateName),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(String nextPageLink) {
+                        return getCertificateVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -6083,15 +6812,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param certificateName The name of the certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName) {
-        return getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName).map(new Func1<ServiceResponse<CertificateListResult>, CertificateListResult>() {
-            @Override
-            public CertificateListResult call(ServiceResponse<CertificateListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName) {
+        return getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName)
+                .map(new Func1<ServiceResponse<Page<CertificateItem>>, Page<CertificateItem>>() {
+                    @Override
+                    public Page<CertificateItem> call(ServiceResponse<Page<CertificateItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -6101,9 +6831,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param certificateName The name of the certificate.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<ServiceResponse<CertificateListResult>> getCertificateVersionsWithServiceResponseAsync(String vaultBaseUrl, String certificateName) {
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String certificateName) {
+        return getCertificateVersionsSinglePageAsync(vaultBaseUrl, certificateName)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateItem>>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(ServiceResponse<Page<CertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificateVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @param certificateName The name of the certificate.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsSinglePageAsync(final String vaultBaseUrl, final String certificateName) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -6115,18 +6868,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificateVersions(certificateName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateListResult> clientResponse = getCertificateVersionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificateVersions(certificateName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateItem>> result = getCertificateVersionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -6139,10 +6892,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the CertificateListResult object if successful.
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
      */
-    public CertificateListResult getCertificateVersions(String vaultBaseUrl, String certificateName, Integer maxresults) {
-        return getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName, maxresults).toBlocking().single().body();
+    public PagedList<CertificateItem> getCertificateVersions(final String vaultBaseUrl, final String certificateName, final Integer maxresults) {
+        ServiceResponse<Page<CertificateItem>> response = getCertificateVersionsSinglePageAsync(vaultBaseUrl, certificateName, maxresults).toBlocking().single();
+        return new PagedList<CertificateItem>(response.body()) {
+            @Override
+            public Page<CertificateItem> nextPage(String nextPageLink) {
+                return getCertificateVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -6156,8 +6915,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName, Integer maxresults, final ServiceCallback<CertificateListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName, maxresults), serviceCallback);
+    public ServiceFuture<List<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName, final Integer maxresults, final ListOperationCallback<CertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificateVersionsSinglePageAsync(vaultBaseUrl, certificateName, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(String nextPageLink) {
+                        return getCertificateVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -6168,15 +6935,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param certificateName The name of the certificate.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<CertificateListResult> getCertificateVersionsAsync(String vaultBaseUrl, String certificateName, Integer maxresults) {
-        return getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName, maxresults).map(new Func1<ServiceResponse<CertificateListResult>, CertificateListResult>() {
-            @Override
-            public CertificateListResult call(ServiceResponse<CertificateListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<CertificateItem>> getCertificateVersionsAsync(final String vaultBaseUrl, final String certificateName, final Integer maxresults) {
+        return getCertificateVersionsWithServiceResponseAsync(vaultBaseUrl, certificateName, maxresults)
+                .map(new Func1<ServiceResponse<Page<CertificateItem>>, Page<CertificateItem>>() {
+                    @Override
+                    public Page<CertificateItem> call(ServiceResponse<Page<CertificateItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -6187,9 +6955,33 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param certificateName The name of the certificate.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the CertificateListResult object
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
      */
-    public Observable<ServiceResponse<CertificateListResult>> getCertificateVersionsWithServiceResponseAsync(String vaultBaseUrl, String certificateName, Integer maxresults) {
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsWithServiceResponseAsync(final String vaultBaseUrl, final String certificateName, final Integer maxresults) {
+        return getCertificateVersionsSinglePageAsync(vaultBaseUrl, certificateName, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateItem>>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(ServiceResponse<Page<CertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificateVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     ServiceResponse<PageImpl<CertificateItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<CertificateItem>> * @param certificateName The name of the certificate.
+     ServiceResponse<PageImpl<CertificateItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsSinglePageAsync(final String vaultBaseUrl, final String certificateName, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -6200,23 +6992,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificateVersions(certificateName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateListResult> clientResponse = getCertificateVersionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificateVersions(certificateName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateItem>> result = getCertificateVersionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<CertificateListResult> getCertificateVersionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<CertificateListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<CertificateListResult>() { }.getType())
+    private ServiceResponse<PageImpl<CertificateItem>> getCertificateVersionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<CertificateItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<CertificateItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -6288,18 +7080,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificatePolicy(certificateName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificatePolicy>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificatePolicy>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificatePolicy> clientResponse = getCertificatePolicyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificatePolicy(certificateName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificatePolicy>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificatePolicy>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificatePolicy> clientResponse = getCertificatePolicyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificatePolicy> getCertificatePolicyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -6384,18 +7176,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         Validator.validate(certificatePolicy);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateCertificatePolicy(certificateName, certificatePolicy, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificatePolicy>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificatePolicy>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificatePolicy> clientResponse = updateCertificatePolicyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateCertificatePolicy(certificateName, certificatePolicy, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificatePolicy>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificatePolicy>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificatePolicy> clientResponse = updateCertificatePolicyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificatePolicy> updateCertificatePolicyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -6486,18 +7278,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateCertificate(certificateName, certificateVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = updateCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateCertificate(certificateName, certificateVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = updateCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -6593,18 +7385,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(certificateAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateCertificate(certificateName, certificateVersion, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = updateCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateCertificate(certificateName, certificateVersion, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = updateCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateBundle> updateCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -6684,18 +7476,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificate(certificateName, certificateVersion, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = getCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificate(certificateName, certificateVersion, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = getCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateBundle> getCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -6774,18 +7566,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         CertificateOperationUpdateParameter certificateOperation = new CertificateOperationUpdateParameter();
         certificateOperation.withCancellationRequested(cancellationRequested);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateCertificateOperation(certificateName, this.apiVersion(), certificateOperation, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateOperation> clientResponse = updateCertificateOperationDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateCertificateOperation(certificateName, this.apiVersion(), this.acceptLanguage(), certificateOperation, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateOperation> clientResponse = updateCertificateOperationDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateOperation> updateCertificateOperationDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -6858,18 +7650,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getCertificateOperation(certificateName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateOperation> clientResponse = getCertificateOperationDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getCertificateOperation(certificateName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateOperation> clientResponse = getCertificateOperationDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateOperation> getCertificateOperationDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -6942,18 +7734,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteCertificateOperation(certificateName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateOperation> clientResponse = deleteCertificateOperationDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteCertificateOperation(certificateName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateOperation>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateOperation>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateOperation> clientResponse = deleteCertificateOperationDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateOperation> deleteCertificateOperationDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -7044,18 +7836,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.mergeCertificate(certificateName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = mergeCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.mergeCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = mergeCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -7147,18 +7939,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withCertificateAttributes(certificateAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.mergeCertificate(certificateName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = mergeCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.mergeCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = mergeCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateBundle> mergeCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -7176,10 +7968,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedCertificateListResult object if successful.
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object if successful.
      */
-    public DeletedCertificateListResult getDeletedCertificates(String vaultBaseUrl) {
-        return getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<DeletedCertificateItem> getDeletedCertificates(final String vaultBaseUrl) {
+        ServiceResponse<Page<DeletedCertificateItem>> response = getDeletedCertificatesSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<DeletedCertificateItem>(response.body()) {
+            @Override
+            public Page<DeletedCertificateItem> nextPage(String nextPageLink) {
+                return getDeletedCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -7191,8 +7989,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl, final ServiceCallback<DeletedCertificateListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl, final ListOperationCallback<DeletedCertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedCertificatesSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(String nextPageLink) {
+                        return getDeletedCertificatesNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -7201,15 +8007,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    public Observable<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl) {
-        return getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<DeletedCertificateListResult>, DeletedCertificateListResult>() {
-            @Override
-            public DeletedCertificateListResult call(ServiceResponse<DeletedCertificateListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl) {
+        return getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<DeletedCertificateItem>>, Page<DeletedCertificateItem>>() {
+                    @Override
+                    public Page<DeletedCertificateItem> call(ServiceResponse<Page<DeletedCertificateItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -7218,9 +8025,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    public Observable<ServiceResponse<DeletedCertificateListResult>> getDeletedCertificatesWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getDeletedCertificatesSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedCertificateItem>>, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(ServiceResponse<Page<DeletedCertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedCertificatesNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -7229,18 +8058,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedCertificates(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedCertificateListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedCertificateListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedCertificateListResult> clientResponse = getDeletedCertificatesDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedCertificates(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedCertificateItem>> result = getDeletedCertificatesDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedCertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -7252,10 +8081,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the DeletedCertificateListResult object if successful.
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object if successful.
      */
-    public DeletedCertificateListResult getDeletedCertificates(String vaultBaseUrl, Integer maxresults) {
-        return getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<DeletedCertificateItem> getDeletedCertificates(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<DeletedCertificateItem>> response = getDeletedCertificatesSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<DeletedCertificateItem>(response.body()) {
+            @Override
+            public Page<DeletedCertificateItem> nextPage(String nextPageLink) {
+                return getDeletedCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -7268,8 +8103,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<DeletedCertificateListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<DeletedCertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedCertificatesSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(String nextPageLink) {
+                        return getDeletedCertificatesNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -7279,15 +8122,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    public Observable<DeletedCertificateListResult> getDeletedCertificatesAsync(String vaultBaseUrl, Integer maxresults) {
-        return getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<DeletedCertificateListResult>, DeletedCertificateListResult>() {
-            @Override
-            public DeletedCertificateListResult call(ServiceResponse<DeletedCertificateListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<DeletedCertificateItem>> getDeletedCertificatesAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getDeletedCertificatesWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<DeletedCertificateItem>>, Page<DeletedCertificateItem>>() {
+                    @Override
+                    public Page<DeletedCertificateItem> call(ServiceResponse<Page<DeletedCertificateItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -7297,9 +8141,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the DeletedCertificateListResult object
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
      */
-    public Observable<ServiceResponse<DeletedCertificateListResult>> getDeletedCertificatesWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getDeletedCertificatesSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedCertificateItem>>, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(ServiceResponse<Page<DeletedCertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedCertificatesNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     ServiceResponse<PageImpl<DeletedCertificateItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<DeletedCertificateItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -7307,23 +8174,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedCertificates(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedCertificateListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedCertificateListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedCertificateListResult> clientResponse = getDeletedCertificatesDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedCertificates(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedCertificateItem>> result = getDeletedCertificatesDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedCertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<DeletedCertificateListResult> getDeletedCertificatesDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<DeletedCertificateListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<DeletedCertificateListResult>() { }.getType())
+    private ServiceResponse<PageImpl<DeletedCertificateItem>> getDeletedCertificatesDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<DeletedCertificateItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DeletedCertificateItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -7395,18 +8262,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getDeletedCertificate(certificateName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedCertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<DeletedCertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<DeletedCertificateBundle> clientResponse = getDeletedCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getDeletedCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<DeletedCertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<DeletedCertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<DeletedCertificateBundle> clientResponse = getDeletedCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<DeletedCertificateBundle> getDeletedCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -7482,18 +8349,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.purgeDeletedCertificate(certificateName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
-                @Override
-                public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<Void> clientResponse = purgeDeletedCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.purgeDeletedCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Void>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Void>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<Void> clientResponse = purgeDeletedCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<Void> purgeDeletedCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -7570,18 +8437,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.recoverDeletedCertificate(certificateName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<CertificateBundle> clientResponse = recoverDeletedCertificateDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.recoverDeletedCertificate(certificateName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<CertificateBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<CertificateBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<CertificateBundle> clientResponse = recoverDeletedCertificateDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<CertificateBundle> recoverDeletedCertificateDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -7598,10 +8465,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the StorageListResult object if successful.
+     * @return the PagedList&lt;StorageAccountItem&gt; object if successful.
      */
-    public StorageListResult getStorageAccounts(String vaultBaseUrl) {
-        return getStorageAccountsWithServiceResponseAsync(vaultBaseUrl).toBlocking().single().body();
+    public PagedList<StorageAccountItem> getStorageAccounts(final String vaultBaseUrl) {
+        ServiceResponse<Page<StorageAccountItem>> response = getStorageAccountsSinglePageAsync(vaultBaseUrl).toBlocking().single();
+        return new PagedList<StorageAccountItem>(response.body()) {
+            @Override
+            public Page<StorageAccountItem> nextPage(String nextPageLink) {
+                return getStorageAccountsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -7612,8 +8485,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl, final ServiceCallback<StorageListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getStorageAccountsWithServiceResponseAsync(vaultBaseUrl), serviceCallback);
+    public ServiceFuture<List<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl, final ListOperationCallback<StorageAccountItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getStorageAccountsSinglePageAsync(vaultBaseUrl),
+                new Func1<String, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(String nextPageLink) {
+                        return getStorageAccountsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -7621,15 +8502,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    public Observable<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl) {
-        return getStorageAccountsWithServiceResponseAsync(vaultBaseUrl).map(new Func1<ServiceResponse<StorageListResult>, StorageListResult>() {
-            @Override
-            public StorageListResult call(ServiceResponse<StorageListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl) {
+        return getStorageAccountsWithServiceResponseAsync(vaultBaseUrl)
+                .map(new Func1<ServiceResponse<Page<StorageAccountItem>>, Page<StorageAccountItem>>() {
+                    @Override
+                    public Page<StorageAccountItem> call(ServiceResponse<Page<StorageAccountItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -7637,9 +8519,30 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      *
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    public Observable<ServiceResponse<StorageListResult>> getStorageAccountsWithServiceResponseAsync(String vaultBaseUrl) {
+    public Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsWithServiceResponseAsync(final String vaultBaseUrl) {
+        return getStorageAccountsSinglePageAsync(vaultBaseUrl)
+                .concatMap(new Func1<ServiceResponse<Page<StorageAccountItem>>, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(ServiceResponse<Page<StorageAccountItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getStorageAccountsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;StorageAccountItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsSinglePageAsync(final String vaultBaseUrl) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -7648,18 +8551,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getStorageAccounts(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageListResult> clientResponse = getStorageAccountsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getStorageAccounts(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<StorageAccountItem>> result = getStorageAccountsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<StorageAccountItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -7670,10 +8573,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the StorageListResult object if successful.
+     * @return the PagedList&lt;StorageAccountItem&gt; object if successful.
      */
-    public StorageListResult getStorageAccounts(String vaultBaseUrl, Integer maxresults) {
-        return getStorageAccountsWithServiceResponseAsync(vaultBaseUrl, maxresults).toBlocking().single().body();
+    public PagedList<StorageAccountItem> getStorageAccounts(final String vaultBaseUrl, final Integer maxresults) {
+        ServiceResponse<Page<StorageAccountItem>> response = getStorageAccountsSinglePageAsync(vaultBaseUrl, maxresults).toBlocking().single();
+        return new PagedList<StorageAccountItem>(response.body()) {
+            @Override
+            public Page<StorageAccountItem> nextPage(String nextPageLink) {
+                return getStorageAccountsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -7685,8 +8594,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl, Integer maxresults, final ServiceCallback<StorageListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getStorageAccountsWithServiceResponseAsync(vaultBaseUrl, maxresults), serviceCallback);
+    public ServiceFuture<List<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl, final Integer maxresults, final ListOperationCallback<StorageAccountItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getStorageAccountsSinglePageAsync(vaultBaseUrl, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(String nextPageLink) {
+                        return getStorageAccountsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -7695,15 +8612,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    public Observable<StorageListResult> getStorageAccountsAsync(String vaultBaseUrl, Integer maxresults) {
-        return getStorageAccountsWithServiceResponseAsync(vaultBaseUrl, maxresults).map(new Func1<ServiceResponse<StorageListResult>, StorageListResult>() {
-            @Override
-            public StorageListResult call(ServiceResponse<StorageListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<StorageAccountItem>> getStorageAccountsAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getStorageAccountsWithServiceResponseAsync(vaultBaseUrl, maxresults)
+                .map(new Func1<ServiceResponse<Page<StorageAccountItem>>, Page<StorageAccountItem>>() {
+                    @Override
+                    public Page<StorageAccountItem> call(ServiceResponse<Page<StorageAccountItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -7712,9 +8630,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the StorageListResult object
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
      */
-    public Observable<ServiceResponse<StorageListResult>> getStorageAccountsWithServiceResponseAsync(String vaultBaseUrl, Integer maxresults) {
+    public Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsWithServiceResponseAsync(final String vaultBaseUrl, final Integer maxresults) {
+        return getStorageAccountsSinglePageAsync(vaultBaseUrl, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<StorageAccountItem>>, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(ServiceResponse<Page<StorageAccountItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getStorageAccountsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     ServiceResponse<PageImpl<StorageAccountItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<StorageAccountItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;StorageAccountItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsSinglePageAsync(final String vaultBaseUrl, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -7722,23 +8662,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getStorageAccounts(maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageListResult> clientResponse = getStorageAccountsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getStorageAccounts(maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<StorageAccountItem>> result = getStorageAccountsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<StorageAccountItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<StorageListResult> getStorageAccountsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<StorageListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<StorageListResult>() { }.getType())
+    private ServiceResponse<PageImpl<StorageAccountItem>> getStorageAccountsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<StorageAccountItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<StorageAccountItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -7806,18 +8746,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteStorageAccount(storageAccountName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageBundle> clientResponse = deleteStorageAccountDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteStorageAccount(storageAccountName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<StorageBundle> clientResponse = deleteStorageAccountDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<StorageBundle> deleteStorageAccountDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -7890,18 +8830,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getStorageAccount(storageAccountName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageBundle> clientResponse = getStorageAccountDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getStorageAccount(storageAccountName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<StorageBundle> clientResponse = getStorageAccountDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<StorageBundle> getStorageAccountDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -8002,18 +8942,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withStorageAccountAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setStorageAccount(storageAccountName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageBundle> clientResponse = setStorageAccountDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setStorageAccount(storageAccountName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<StorageBundle> clientResponse = setStorageAccountDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -8118,18 +9058,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withStorageAccountAttributes(storageAccountAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setStorageAccount(storageAccountName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageBundle> clientResponse = setStorageAccountDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setStorageAccount(storageAccountName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<StorageBundle> clientResponse = setStorageAccountDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<StorageBundle> setStorageAccountDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -8213,18 +9153,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withStorageAccountAttributes(null);
         parameters.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateStorageAccount(storageAccountName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageBundle> clientResponse = updateStorageAccountDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateStorageAccount(storageAccountName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<StorageBundle> clientResponse = updateStorageAccountDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -8318,18 +9258,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters.withStorageAccountAttributes(storageAccountAttributes);
         parameters.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateStorageAccount(storageAccountName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageBundle> clientResponse = updateStorageAccountDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateStorageAccount(storageAccountName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<StorageBundle> clientResponse = updateStorageAccountDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<StorageBundle> updateStorageAccountDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -8411,18 +9351,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         StorageAccountRegenerteKeyParameters parameters = new StorageAccountRegenerteKeyParameters();
         parameters.withKeyName(keyName);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.regenerateStorageAccountKey(storageAccountName, this.apiVersion(), parameters, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<StorageBundle> clientResponse = regenerateStorageAccountKeyDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.regenerateStorageAccountKey(storageAccountName, this.apiVersion(), this.acceptLanguage(), parameters, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<StorageBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<StorageBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<StorageBundle> clientResponse = regenerateStorageAccountKeyDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<StorageBundle> regenerateStorageAccountKeyDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -8440,10 +9380,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SasDefinitionListResult object if successful.
+     * @return the PagedList&lt;SasDefinitionItem&gt; object if successful.
      */
-    public SasDefinitionListResult getSasDefinitions(String vaultBaseUrl, String storageAccountName) {
-        return getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName).toBlocking().single().body();
+    public PagedList<SasDefinitionItem> getSasDefinitions(final String vaultBaseUrl, final String storageAccountName) {
+        ServiceResponse<Page<SasDefinitionItem>> response = getSasDefinitionsSinglePageAsync(vaultBaseUrl, storageAccountName).toBlocking().single();
+        return new PagedList<SasDefinitionItem>(response.body()) {
+            @Override
+            public Page<SasDefinitionItem> nextPage(String nextPageLink) {
+                return getSasDefinitionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -8455,8 +9401,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName, final ServiceCallback<SasDefinitionListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName), serviceCallback);
+    public ServiceFuture<List<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName, final ListOperationCallback<SasDefinitionItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSasDefinitionsSinglePageAsync(vaultBaseUrl, storageAccountName),
+                new Func1<String, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(String nextPageLink) {
+                        return getSasDefinitionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -8465,15 +9419,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param storageAccountName The name of the storage account.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    public Observable<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName) {
-        return getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName).map(new Func1<ServiceResponse<SasDefinitionListResult>, SasDefinitionListResult>() {
-            @Override
-            public SasDefinitionListResult call(ServiceResponse<SasDefinitionListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName) {
+        return getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName)
+                .map(new Func1<ServiceResponse<Page<SasDefinitionItem>>, Page<SasDefinitionItem>>() {
+                    @Override
+                    public Page<SasDefinitionItem> call(ServiceResponse<Page<SasDefinitionItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -8482,9 +9437,31 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
      * @param storageAccountName The name of the storage account.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    public Observable<ServiceResponse<SasDefinitionListResult>> getSasDefinitionsWithServiceResponseAsync(String vaultBaseUrl, String storageAccountName) {
+    public Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsWithServiceResponseAsync(final String vaultBaseUrl, final String storageAccountName) {
+        return getSasDefinitionsSinglePageAsync(vaultBaseUrl, storageAccountName)
+                .concatMap(new Func1<ServiceResponse<Page<SasDefinitionItem>>, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(ServiceResponse<Page<SasDefinitionItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSasDefinitionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     * @param storageAccountName The name of the storage account.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SasDefinitionItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsSinglePageAsync(final String vaultBaseUrl, final String storageAccountName) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -8496,18 +9473,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         }
         final Integer maxresults = null;
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSasDefinitions(storageAccountName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionListResult> clientResponse = getSasDefinitionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSasDefinitions(storageAccountName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SasDefinitionItem>> result = getSasDefinitionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SasDefinitionItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -8519,10 +9496,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @throws KeyVaultErrorException thrown if the request is rejected by server
      * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
-     * @return the SasDefinitionListResult object if successful.
+     * @return the PagedList&lt;SasDefinitionItem&gt; object if successful.
      */
-    public SasDefinitionListResult getSasDefinitions(String vaultBaseUrl, String storageAccountName, Integer maxresults) {
-        return getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName, maxresults).toBlocking().single().body();
+    public PagedList<SasDefinitionItem> getSasDefinitions(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults) {
+        ServiceResponse<Page<SasDefinitionItem>> response = getSasDefinitionsSinglePageAsync(vaultBaseUrl, storageAccountName, maxresults).toBlocking().single();
+        return new PagedList<SasDefinitionItem>(response.body()) {
+            @Override
+            public Page<SasDefinitionItem> nextPage(String nextPageLink) {
+                return getSasDefinitionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
     }
 
     /**
@@ -8535,8 +9518,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @throws IllegalArgumentException thrown if parameters fail the validation
      * @return the {@link ServiceFuture} object
      */
-    public ServiceFuture<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName, Integer maxresults, final ServiceCallback<SasDefinitionListResult> serviceCallback) {
-        return ServiceFuture.fromResponse(getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName, maxresults), serviceCallback);
+    public ServiceFuture<List<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults, final ListOperationCallback<SasDefinitionItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSasDefinitionsSinglePageAsync(vaultBaseUrl, storageAccountName, maxresults),
+                new Func1<String, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(String nextPageLink) {
+                        return getSasDefinitionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
     }
 
     /**
@@ -8546,15 +9537,16 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param storageAccountName The name of the storage account.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    public Observable<SasDefinitionListResult> getSasDefinitionsAsync(String vaultBaseUrl, String storageAccountName, Integer maxresults) {
-        return getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName, maxresults).map(new Func1<ServiceResponse<SasDefinitionListResult>, SasDefinitionListResult>() {
-            @Override
-            public SasDefinitionListResult call(ServiceResponse<SasDefinitionListResult> response) {
-                return response.body();
-            }
-        });
+    public Observable<Page<SasDefinitionItem>> getSasDefinitionsAsync(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults) {
+        return getSasDefinitionsWithServiceResponseAsync(vaultBaseUrl, storageAccountName, maxresults)
+                .map(new Func1<ServiceResponse<Page<SasDefinitionItem>>, Page<SasDefinitionItem>>() {
+                    @Override
+                    public Page<SasDefinitionItem> call(ServiceResponse<Page<SasDefinitionItem>> response) {
+                        return response.body();
+                    }
+                });
     }
 
     /**
@@ -8564,9 +9556,32 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
      * @param storageAccountName The name of the storage account.
      * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
      * @throws IllegalArgumentException thrown if parameters fail the validation
-     * @return the observable to the SasDefinitionListResult object
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
      */
-    public Observable<ServiceResponse<SasDefinitionListResult>> getSasDefinitionsWithServiceResponseAsync(String vaultBaseUrl, String storageAccountName, Integer maxresults) {
+    public Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsWithServiceResponseAsync(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults) {
+        return getSasDefinitionsSinglePageAsync(vaultBaseUrl, storageAccountName, maxresults)
+                .concatMap(new Func1<ServiceResponse<Page<SasDefinitionItem>>, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(ServiceResponse<Page<SasDefinitionItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSasDefinitionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     ServiceResponse<PageImpl<SasDefinitionItem>> * @param vaultBaseUrl The vault name, for example https://myvault.vault.azure.net.
+     ServiceResponse<PageImpl<SasDefinitionItem>> * @param storageAccountName The name of the storage account.
+     ServiceResponse<PageImpl<SasDefinitionItem>> * @param maxresults Maximum number of results to return in a page. If not specified the service will return up to 25 results.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SasDefinitionItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsSinglePageAsync(final String vaultBaseUrl, final String storageAccountName, final Integer maxresults) {
         if (vaultBaseUrl == null) {
             throw new IllegalArgumentException("Parameter vaultBaseUrl is required and cannot be null.");
         }
@@ -8577,23 +9592,23 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSasDefinitions(storageAccountName, maxresults, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionListResult>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionListResult>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionListResult> clientResponse = getSasDefinitionsDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSasDefinitions(storageAccountName, maxresults, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SasDefinitionItem>> result = getSasDefinitionsDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SasDefinitionItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
-    private ServiceResponse<SasDefinitionListResult> getSasDefinitionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
-        return this.restClient().responseBuilderFactory().<SasDefinitionListResult, KeyVaultErrorException>newInstance(this.serializerAdapter())
-                .register(200, new TypeToken<SasDefinitionListResult>() { }.getType())
+    private ServiceResponse<PageImpl<SasDefinitionItem>> getSasDefinitionsDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<SasDefinitionItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SasDefinitionItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
@@ -8668,18 +9683,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.deleteSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionBundle> clientResponse = deleteSasDefinitionDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.deleteSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SasDefinitionBundle> clientResponse = deleteSasDefinitionDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SasDefinitionBundle> deleteSasDefinitionDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -8759,18 +9774,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
             throw new IllegalArgumentException("Parameter this.apiVersion() is required and cannot be null.");
         }
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.getSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionBundle> clientResponse = getSasDefinitionDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.getSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), this.acceptLanguage(), parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SasDefinitionBundle> clientResponse = getSasDefinitionDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SasDefinitionBundle> getSasDefinitionDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -8864,18 +9879,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters1.withSasDefinitionAttributes(null);
         parameters1.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), parameters1, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionBundle> clientResponse = setSasDefinitionDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), this.acceptLanguage(), parameters1, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SasDefinitionBundle> clientResponse = setSasDefinitionDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -8970,18 +9985,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters1.withSasDefinitionAttributes(sasDefinitionAttributes);
         parameters1.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.setSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), parameters1, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionBundle> clientResponse = setSasDefinitionDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.setSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), this.acceptLanguage(), parameters1, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SasDefinitionBundle> clientResponse = setSasDefinitionDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SasDefinitionBundle> setSasDefinitionDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
@@ -9068,18 +10083,18 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters1.withSasDefinitionAttributes(null);
         parameters1.withTags(null);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), parameters1, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionBundle> clientResponse = updateSasDefinitionDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), this.acceptLanguage(), parameters1, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SasDefinitionBundle> clientResponse = updateSasDefinitionDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     /**
@@ -9171,23 +10186,1395 @@ public class KeyVaultClientBaseImpl extends ServiceClient implements KeyVaultCli
         parameters1.withSasDefinitionAttributes(sasDefinitionAttributes);
         parameters1.withTags(tags);
         String parameterizedHost = Joiner.on(", ").join("{vaultBaseUrl}", vaultBaseUrl);
-        return service.updateSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), parameters1, parameterizedHost)
-            .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
-                @Override
-                public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
-                    try {
-                        ServiceResponse<SasDefinitionBundle> clientResponse = updateSasDefinitionDelegate(response);
-                        return Observable.just(clientResponse);
-                    } catch (Throwable t) {
-                        return Observable.error(t);
+        return service.updateSasDefinition(storageAccountName, sasDefinitionName, this.apiVersion(), this.acceptLanguage(), parameters1, parameterizedHost, this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<SasDefinitionBundle>>>() {
+                    @Override
+                    public Observable<ServiceResponse<SasDefinitionBundle>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<SasDefinitionBundle> clientResponse = updateSasDefinitionDelegate(response);
+                            return Observable.just(clientResponse);
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
                     }
-                }
-            });
+                });
     }
 
     private ServiceResponse<SasDefinitionBundle> updateSasDefinitionDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
         return this.restClient().responseBuilderFactory().<SasDefinitionBundle, KeyVaultErrorException>newInstance(this.serializerAdapter())
                 .register(200, new TypeToken<SasDefinitionBundle>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
+     */
+    public PagedList<KeyItem> getKeyVersionsNext(final String nextPageLink) {
+        ServiceResponse<Page<KeyItem>> response = getKeyVersionsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<KeyItem>(response.body()) {
+            @Override
+            public Page<KeyItem> nextPage(String nextPageLink) {
+                return getKeyVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<KeyItem>> getKeyVersionsNextAsync(final String nextPageLink, final ServiceFuture<List<KeyItem>> serviceFuture, final ListOperationCallback<KeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getKeyVersionsNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(String nextPageLink) {
+                        return getKeyVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    public Observable<Page<KeyItem>> getKeyVersionsNextAsync(final String nextPageLink) {
+        return getKeyVersionsNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<KeyItem>>, Page<KeyItem>>() {
+                    @Override
+                    public Page<KeyItem> call(ServiceResponse<Page<KeyItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsNextWithServiceResponseAsync(final String nextPageLink) {
+        return getKeyVersionsNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<KeyItem>>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(ServiceResponse<Page<KeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getKeyVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * Retrieves a list of individual key versions with the same key name.
+     * The full key identifier, attributes, and tags are provided in the response.
+     *
+     ServiceResponse<PageImpl<KeyItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;KeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeyVersionsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getKeyVersionsNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<KeyItem>> result = getKeyVersionsNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<KeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<KeyItem>> getKeyVersionsNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<KeyItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<KeyItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;KeyItem&gt; object if successful.
+     */
+    public PagedList<KeyItem> getKeysNext(final String nextPageLink) {
+        ServiceResponse<Page<KeyItem>> response = getKeysNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<KeyItem>(response.body()) {
+            @Override
+            public Page<KeyItem> nextPage(String nextPageLink) {
+                return getKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<KeyItem>> getKeysNextAsync(final String nextPageLink, final ServiceFuture<List<KeyItem>> serviceFuture, final ListOperationCallback<KeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getKeysNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(String nextPageLink) {
+                        return getKeysNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    public Observable<Page<KeyItem>> getKeysNextAsync(final String nextPageLink) {
+        return getKeysNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<KeyItem>>, Page<KeyItem>>() {
+                    @Override
+                    public Page<KeyItem> call(ServiceResponse<Page<KeyItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;KeyItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeysNextWithServiceResponseAsync(final String nextPageLink) {
+        return getKeysNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<KeyItem>>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(ServiceResponse<Page<KeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getKeysNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List keys in the specified vault.
+     * Retrieves a list of the keys in the Key Vault as JSON Web Key structures that contain the public part of a stored key. The LIST operation is applicable to all key types, however only the base key identifier,attributes, and tags are provided in the response. Individual versions of a key are not listed in the response. Authorization: Requires the keys/list permission.
+     *
+     ServiceResponse<PageImpl<KeyItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;KeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<KeyItem>>> getKeysNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getKeysNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<KeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<KeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<KeyItem>> result = getKeysNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<KeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<KeyItem>> getKeysNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<KeyItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<KeyItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;DeletedKeyItem&gt; object if successful.
+     */
+    public PagedList<DeletedKeyItem> getDeletedKeysNext(final String nextPageLink) {
+        ServiceResponse<Page<DeletedKeyItem>> response = getDeletedKeysNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<DeletedKeyItem>(response.body()) {
+            @Override
+            public Page<DeletedKeyItem> nextPage(String nextPageLink) {
+                return getDeletedKeysNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<DeletedKeyItem>> getDeletedKeysNextAsync(final String nextPageLink, final ServiceFuture<List<DeletedKeyItem>> serviceFuture, final ListOperationCallback<DeletedKeyItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedKeysNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(String nextPageLink) {
+                        return getDeletedKeysNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
+     */
+    public Observable<Page<DeletedKeyItem>> getDeletedKeysNextAsync(final String nextPageLink) {
+        return getDeletedKeysNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<DeletedKeyItem>>, Page<DeletedKeyItem>>() {
+                    @Override
+                    public Page<DeletedKeyItem> call(ServiceResponse<Page<DeletedKeyItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedKeyItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysNextWithServiceResponseAsync(final String nextPageLink) {
+        return getDeletedKeysNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedKeyItem>>, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(ServiceResponse<Page<DeletedKeyItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedKeysNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List deleted keys in the specified vault. Authorization: Requires the keys/list permission.
+     *
+     ServiceResponse<PageImpl<DeletedKeyItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedKeyItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedKeyItem>>> getDeletedKeysNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getDeletedKeysNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedKeyItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedKeyItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedKeyItem>> result = getDeletedKeysNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedKeyItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<DeletedKeyItem>> getDeletedKeysNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<DeletedKeyItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DeletedKeyItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
+     */
+    public PagedList<SecretItem> getSecretsNext(final String nextPageLink) {
+        ServiceResponse<Page<SecretItem>> response = getSecretsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<SecretItem>(response.body()) {
+            @Override
+            public Page<SecretItem> nextPage(String nextPageLink) {
+                return getSecretsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<SecretItem>> getSecretsNextAsync(final String nextPageLink, final ServiceFuture<List<SecretItem>> serviceFuture, final ListOperationCallback<SecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSecretsNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(String nextPageLink) {
+                        return getSecretsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    public Observable<Page<SecretItem>> getSecretsNextAsync(final String nextPageLink) {
+        return getSecretsNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<SecretItem>>, Page<SecretItem>>() {
+                    @Override
+                    public Page<SecretItem> call(ServiceResponse<Page<SecretItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretsNextWithServiceResponseAsync(final String nextPageLink) {
+        return getSecretsNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<SecretItem>>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(ServiceResponse<Page<SecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSecretsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List secrets in a specified key vault.
+     * The LIST operation is applicable to the entire vault, however only the base secret identifier and attributes are provided in the response. Individual secret versions are not listed in the response.
+     *
+     ServiceResponse<PageImpl<SecretItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getSecretsNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SecretItem>> result = getSecretsNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<SecretItem>> getSecretsNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<SecretItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SecretItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;SecretItem&gt; object if successful.
+     */
+    public PagedList<SecretItem> getSecretVersionsNext(final String nextPageLink) {
+        ServiceResponse<Page<SecretItem>> response = getSecretVersionsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<SecretItem>(response.body()) {
+            @Override
+            public Page<SecretItem> nextPage(String nextPageLink) {
+                return getSecretVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<SecretItem>> getSecretVersionsNextAsync(final String nextPageLink, final ServiceFuture<List<SecretItem>> serviceFuture, final ListOperationCallback<SecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSecretVersionsNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(String nextPageLink) {
+                        return getSecretVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    public Observable<Page<SecretItem>> getSecretVersionsNextAsync(final String nextPageLink) {
+        return getSecretVersionsNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<SecretItem>>, Page<SecretItem>>() {
+                    @Override
+                    public Page<SecretItem> call(ServiceResponse<Page<SecretItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SecretItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsNextWithServiceResponseAsync(final String nextPageLink) {
+        return getSecretVersionsNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<SecretItem>>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(ServiceResponse<Page<SecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSecretVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List the versions of the specified secret.
+     * The LIST VERSIONS operation can be applied to all versions having the same secret name in the same key vault. The full secret identifier and attributes are provided in the response. No values are returned for the secrets and only current versions of a secret are listed.
+     *
+     ServiceResponse<PageImpl<SecretItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SecretItem>>> getSecretVersionsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getSecretVersionsNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SecretItem>> result = getSecretVersionsNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<SecretItem>> getSecretVersionsNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<SecretItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SecretItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;DeletedSecretItem&gt; object if successful.
+     */
+    public PagedList<DeletedSecretItem> getDeletedSecretsNext(final String nextPageLink) {
+        ServiceResponse<Page<DeletedSecretItem>> response = getDeletedSecretsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<DeletedSecretItem>(response.body()) {
+            @Override
+            public Page<DeletedSecretItem> nextPage(String nextPageLink) {
+                return getDeletedSecretsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<DeletedSecretItem>> getDeletedSecretsNextAsync(final String nextPageLink, final ServiceFuture<List<DeletedSecretItem>> serviceFuture, final ListOperationCallback<DeletedSecretItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedSecretsNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(String nextPageLink) {
+                        return getDeletedSecretsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
+     */
+    public Observable<Page<DeletedSecretItem>> getDeletedSecretsNextAsync(final String nextPageLink) {
+        return getDeletedSecretsNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<DeletedSecretItem>>, Page<DeletedSecretItem>>() {
+                    @Override
+                    public Page<DeletedSecretItem> call(ServiceResponse<Page<DeletedSecretItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedSecretItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsNextWithServiceResponseAsync(final String nextPageLink) {
+        return getDeletedSecretsNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedSecretItem>>, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(ServiceResponse<Page<DeletedSecretItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedSecretsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List deleted secrets in the specified vault. Authorization: requires the secrets/list permission.
+     *
+     ServiceResponse<PageImpl<DeletedSecretItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedSecretItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedSecretItem>>> getDeletedSecretsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getDeletedSecretsNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedSecretItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedSecretItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedSecretItem>> result = getDeletedSecretsNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedSecretItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<DeletedSecretItem>> getDeletedSecretsNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<DeletedSecretItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DeletedSecretItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
+     */
+    public PagedList<CertificateItem> getCertificatesNext(final String nextPageLink) {
+        ServiceResponse<Page<CertificateItem>> response = getCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<CertificateItem>(response.body()) {
+            @Override
+            public Page<CertificateItem> nextPage(String nextPageLink) {
+                return getCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<CertificateItem>> getCertificatesNextAsync(final String nextPageLink, final ServiceFuture<List<CertificateItem>> serviceFuture, final ListOperationCallback<CertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificatesNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(String nextPageLink) {
+                        return getCertificatesNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    public Observable<Page<CertificateItem>> getCertificatesNextAsync(final String nextPageLink) {
+        return getCertificatesNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<CertificateItem>>, Page<CertificateItem>>() {
+                    @Override
+                    public Page<CertificateItem> call(ServiceResponse<Page<CertificateItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesNextWithServiceResponseAsync(final String nextPageLink) {
+        return getCertificatesNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateItem>>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(ServiceResponse<Page<CertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificatesNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List certificates in a specified key vault.
+     * The GetCertificates operation returns the set of certificates resources in the specified key vault.
+     *
+     ServiceResponse<PageImpl<CertificateItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificatesNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getCertificatesNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateItem>> result = getCertificatesNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<CertificateItem>> getCertificatesNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<CertificateItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<CertificateItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object if successful.
+     */
+    public PagedList<CertificateIssuerItem> getCertificateIssuersNext(final String nextPageLink) {
+        ServiceResponse<Page<CertificateIssuerItem>> response = getCertificateIssuersNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<CertificateIssuerItem>(response.body()) {
+            @Override
+            public Page<CertificateIssuerItem> nextPage(String nextPageLink) {
+                return getCertificateIssuersNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<CertificateIssuerItem>> getCertificateIssuersNextAsync(final String nextPageLink, final ServiceFuture<List<CertificateIssuerItem>> serviceFuture, final ListOperationCallback<CertificateIssuerItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificateIssuersNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(String nextPageLink) {
+                        return getCertificateIssuersNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
+     */
+    public Observable<Page<CertificateIssuerItem>> getCertificateIssuersNextAsync(final String nextPageLink) {
+        return getCertificateIssuersNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<CertificateIssuerItem>>, Page<CertificateIssuerItem>>() {
+                    @Override
+                    public Page<CertificateIssuerItem> call(ServiceResponse<Page<CertificateIssuerItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateIssuerItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersNextWithServiceResponseAsync(final String nextPageLink) {
+        return getCertificateIssuersNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateIssuerItem>>, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(ServiceResponse<Page<CertificateIssuerItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificateIssuersNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List certificate issuers for a specified key vault.
+     * The GetCertificateIssuers operation returns the set of certificate issuer resources in the specified key vault.
+     *
+     ServiceResponse<PageImpl<CertificateIssuerItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateIssuerItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> getCertificateIssuersNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getCertificateIssuersNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateIssuerItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateIssuerItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateIssuerItem>> result = getCertificateIssuersNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateIssuerItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<CertificateIssuerItem>> getCertificateIssuersNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<CertificateIssuerItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<CertificateIssuerItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;CertificateItem&gt; object if successful.
+     */
+    public PagedList<CertificateItem> getCertificateVersionsNext(final String nextPageLink) {
+        ServiceResponse<Page<CertificateItem>> response = getCertificateVersionsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<CertificateItem>(response.body()) {
+            @Override
+            public Page<CertificateItem> nextPage(String nextPageLink) {
+                return getCertificateVersionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<CertificateItem>> getCertificateVersionsNextAsync(final String nextPageLink, final ServiceFuture<List<CertificateItem>> serviceFuture, final ListOperationCallback<CertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getCertificateVersionsNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(String nextPageLink) {
+                        return getCertificateVersionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    public Observable<Page<CertificateItem>> getCertificateVersionsNextAsync(final String nextPageLink) {
+        return getCertificateVersionsNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<CertificateItem>>, Page<CertificateItem>>() {
+                    @Override
+                    public Page<CertificateItem> call(ServiceResponse<Page<CertificateItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;CertificateItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsNextWithServiceResponseAsync(final String nextPageLink) {
+        return getCertificateVersionsNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<CertificateItem>>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(ServiceResponse<Page<CertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getCertificateVersionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List the versions of a certificate.
+     * The GetCertificateVersions operation returns the versions of a certificate in the specified key vault.
+     *
+     ServiceResponse<PageImpl<CertificateItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;CertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<CertificateItem>>> getCertificateVersionsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getCertificateVersionsNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<CertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<CertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<CertificateItem>> result = getCertificateVersionsNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<CertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<CertificateItem>> getCertificateVersionsNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<CertificateItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<CertificateItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object if successful.
+     */
+    public PagedList<DeletedCertificateItem> getDeletedCertificatesNext(final String nextPageLink) {
+        ServiceResponse<Page<DeletedCertificateItem>> response = getDeletedCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<DeletedCertificateItem>(response.body()) {
+            @Override
+            public Page<DeletedCertificateItem> nextPage(String nextPageLink) {
+                return getDeletedCertificatesNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<DeletedCertificateItem>> getDeletedCertificatesNextAsync(final String nextPageLink, final ServiceFuture<List<DeletedCertificateItem>> serviceFuture, final ListOperationCallback<DeletedCertificateItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getDeletedCertificatesNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(String nextPageLink) {
+                        return getDeletedCertificatesNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
+     */
+    public Observable<Page<DeletedCertificateItem>> getDeletedCertificatesNextAsync(final String nextPageLink) {
+        return getDeletedCertificatesNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<DeletedCertificateItem>>, Page<DeletedCertificateItem>>() {
+                    @Override
+                    public Page<DeletedCertificateItem> call(ServiceResponse<Page<DeletedCertificateItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;DeletedCertificateItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesNextWithServiceResponseAsync(final String nextPageLink) {
+        return getDeletedCertificatesNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<DeletedCertificateItem>>, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(ServiceResponse<Page<DeletedCertificateItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getDeletedCertificatesNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * Lists the deleted certificates in the specified vault, currently available for recovery.
+     * The GetDeletedCertificates operation retrieves the certificates in the current vault which are in a deleted state and ready for recovery or purging.
+     *
+     ServiceResponse<PageImpl<DeletedCertificateItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;DeletedCertificateItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> getDeletedCertificatesNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getDeletedCertificatesNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<DeletedCertificateItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<DeletedCertificateItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<DeletedCertificateItem>> result = getDeletedCertificatesNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<DeletedCertificateItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<DeletedCertificateItem>> getDeletedCertificatesNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<DeletedCertificateItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<DeletedCertificateItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;StorageAccountItem&gt; object if successful.
+     */
+    public PagedList<StorageAccountItem> getStorageAccountsNext(final String nextPageLink) {
+        ServiceResponse<Page<StorageAccountItem>> response = getStorageAccountsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<StorageAccountItem>(response.body()) {
+            @Override
+            public Page<StorageAccountItem> nextPage(String nextPageLink) {
+                return getStorageAccountsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<StorageAccountItem>> getStorageAccountsNextAsync(final String nextPageLink, final ServiceFuture<List<StorageAccountItem>> serviceFuture, final ListOperationCallback<StorageAccountItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getStorageAccountsNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(String nextPageLink) {
+                        return getStorageAccountsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
+     */
+    public Observable<Page<StorageAccountItem>> getStorageAccountsNextAsync(final String nextPageLink) {
+        return getStorageAccountsNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<StorageAccountItem>>, Page<StorageAccountItem>>() {
+                    @Override
+                    public Page<StorageAccountItem> call(ServiceResponse<Page<StorageAccountItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;StorageAccountItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsNextWithServiceResponseAsync(final String nextPageLink) {
+        return getStorageAccountsNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<StorageAccountItem>>, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(ServiceResponse<Page<StorageAccountItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getStorageAccountsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List storage accounts managed by specified key vault.
+     *
+     ServiceResponse<PageImpl<StorageAccountItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;StorageAccountItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<StorageAccountItem>>> getStorageAccountsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getStorageAccountsNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<StorageAccountItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<StorageAccountItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<StorageAccountItem>> result = getStorageAccountsNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<StorageAccountItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<StorageAccountItem>> getStorageAccountsNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<StorageAccountItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<StorageAccountItem>>() { }.getType())
+                .registerError(KeyVaultErrorException.class)
+                .build(response);
+    }
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @throws KeyVaultErrorException thrown if the request is rejected by server
+     * @throws RuntimeException all other wrapped checked exceptions if the request fails to be sent
+     * @return the PagedList&lt;SasDefinitionItem&gt; object if successful.
+     */
+    public PagedList<SasDefinitionItem> getSasDefinitionsNext(final String nextPageLink) {
+        ServiceResponse<Page<SasDefinitionItem>> response = getSasDefinitionsNextSinglePageAsync(nextPageLink).toBlocking().single();
+        return new PagedList<SasDefinitionItem>(response.body()) {
+            @Override
+            public Page<SasDefinitionItem> nextPage(String nextPageLink) {
+                return getSasDefinitionsNextSinglePageAsync(nextPageLink).toBlocking().single().body();
+            }
+        };
+    }
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @param serviceFuture the ServiceFuture object tracking the Retrofit calls
+     * @param serviceCallback the async ServiceCallback to handle successful and failed responses.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the {@link ServiceFuture} object
+     */
+    public ServiceFuture<List<SasDefinitionItem>> getSasDefinitionsNextAsync(final String nextPageLink, final ServiceFuture<List<SasDefinitionItem>> serviceFuture, final ListOperationCallback<SasDefinitionItem> serviceCallback) {
+        return AzureServiceFuture.fromPageResponse(
+                getSasDefinitionsNextSinglePageAsync(nextPageLink),
+                new Func1<String, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(String nextPageLink) {
+                        return getSasDefinitionsNextSinglePageAsync(nextPageLink);
+                    }
+                },
+                serviceCallback);
+    }
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
+     */
+    public Observable<Page<SasDefinitionItem>> getSasDefinitionsNextAsync(final String nextPageLink) {
+        return getSasDefinitionsNextWithServiceResponseAsync(nextPageLink)
+                .map(new Func1<ServiceResponse<Page<SasDefinitionItem>>, Page<SasDefinitionItem>>() {
+                    @Override
+                    public Page<SasDefinitionItem> call(ServiceResponse<Page<SasDefinitionItem>> response) {
+                        return response.body();
+                    }
+                });
+    }
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the observable to the PagedList&lt;SasDefinitionItem&gt; object
+     */
+    public Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsNextWithServiceResponseAsync(final String nextPageLink) {
+        return getSasDefinitionsNextSinglePageAsync(nextPageLink)
+                .concatMap(new Func1<ServiceResponse<Page<SasDefinitionItem>>, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(ServiceResponse<Page<SasDefinitionItem>> page) {
+                        String nextPageLink = page.body().nextPageLink();
+                        if (nextPageLink == null) {
+                            return Observable.just(page);
+                        }
+                        return Observable.just(page).concatWith(getSasDefinitionsNextWithServiceResponseAsync(nextPageLink));
+                    }
+                });
+    }
+
+    /**
+     * List storage SAS definitions for the given storage account.
+     *
+     ServiceResponse<PageImpl<SasDefinitionItem>> * @param nextPageLink The NextLink from the previous successful call to List operation.
+     * @throws IllegalArgumentException thrown if parameters fail the validation
+     * @return the PagedList&lt;SasDefinitionItem&gt; object wrapped in {@link ServiceResponse} if successful.
+     */
+    public Observable<ServiceResponse<Page<SasDefinitionItem>>> getSasDefinitionsNextSinglePageAsync(final String nextPageLink) {
+        if (nextPageLink == null) {
+            throw new IllegalArgumentException("Parameter nextPageLink is required and cannot be null.");
+        }
+        String nextUrl = String.format("%s", nextPageLink);
+        return service.getSasDefinitionsNext(nextUrl, this.acceptLanguage(), this.userAgent())
+                .flatMap(new Func1<Response<ResponseBody>, Observable<ServiceResponse<Page<SasDefinitionItem>>>>() {
+                    @Override
+                    public Observable<ServiceResponse<Page<SasDefinitionItem>>> call(Response<ResponseBody> response) {
+                        try {
+                            ServiceResponse<PageImpl<SasDefinitionItem>> result = getSasDefinitionsNextDelegate(response);
+                            return Observable.just(new ServiceResponse<Page<SasDefinitionItem>>(result.body(), result.response()));
+                        } catch (Throwable t) {
+                            return Observable.error(t);
+                        }
+                    }
+                });
+    }
+
+    private ServiceResponse<PageImpl<SasDefinitionItem>> getSasDefinitionsNextDelegate(Response<ResponseBody> response) throws KeyVaultErrorException, IOException, IllegalArgumentException {
+        return this.restClient().responseBuilderFactory().<PageImpl<SasDefinitionItem>, KeyVaultErrorException>newInstance(this.serializerAdapter())
+                .register(200, new TypeToken<PageImpl<SasDefinitionItem>>() { }.getType())
                 .registerError(KeyVaultErrorException.class)
                 .build(response);
     }
