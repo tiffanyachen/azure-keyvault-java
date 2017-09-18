@@ -4,19 +4,27 @@
  * regenerated.
  */
 
-package com.microsoft.azure.keyvault.models;
+package com.microsoft.azure.keyvault.models.generated;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.azure.keyvault.models.IssuerAttributes;
+import com.microsoft.azure.keyvault.models.OrganizationDetails;
 import com.microsoft.azure.keyvault.models.IssuerCredentials;
 
 /**
- * The certificate issuer set parameters.
+ * The issuer for Key Vault certificate.
  */
-public class CertificateIssuerSetParameters {
+public abstract class IssuerBundle<T extends IssuerBundle<T>> {
+    /**
+     * Identifier for the issuer object.
+     */
+    @JsonProperty(value = "id", access = JsonProperty.Access.WRITE_ONLY)
+    private String id;
+
     /**
      * The issuer provider.
      */
-    @JsonProperty(value = "provider", required = true)
+    @JsonProperty(value = "provider")
     private String provider;
 
     /**
@@ -38,6 +46,15 @@ public class CertificateIssuerSetParameters {
     private IssuerAttributes attributes;
 
     /**
+     * Get the id value.
+     *
+     * @return the id value
+     */
+    public String id() {
+        return this.id;
+    }
+
+    /**
      * Get the provider value.
      *
      * @return the provider value
@@ -50,11 +67,11 @@ public class CertificateIssuerSetParameters {
      * Set the provider value.
      *
      * @param provider the provider value to set
-     * @return the CertificateIssuerSetParameters object itself.
+     * @return the IssuerBundle object itself.
      */
-    public CertificateIssuerSetParameters withProvider(String provider) {
+    public T withProvider(String provider) {
         this.provider = provider;
-        return this;
+        return (T) this;
     }
 
     /**
@@ -70,11 +87,11 @@ public class CertificateIssuerSetParameters {
      * Set the credentials value.
      *
      * @param credentials the credentials value to set
-     * @return the CertificateIssuerSetParameters object itself.
+     * @return the IssuerBundle object itself.
      */
-    public CertificateIssuerSetParameters withCredentials(IssuerCredentials credentials) {
+    public T withCredentials(IssuerCredentials credentials) {
         this.credentials = credentials;
-        return this;
+        return (T) this;
     }
 
     /**
@@ -90,11 +107,11 @@ public class CertificateIssuerSetParameters {
      * Set the organizationDetails value.
      *
      * @param organizationDetails the organizationDetails value to set
-     * @return the CertificateIssuerSetParameters object itself.
+     * @return the IssuerBundle object itself.
      */
-    public CertificateIssuerSetParameters withOrganizationDetails(OrganizationDetails organizationDetails) {
+    public T withOrganizationDetails(OrganizationDetails organizationDetails) {
         this.organizationDetails = organizationDetails;
-        return this;
+        return (T) this;
     }
 
     /**
@@ -110,11 +127,11 @@ public class CertificateIssuerSetParameters {
      * Set the attributes value.
      *
      * @param attributes the attributes value to set
-     * @return the CertificateIssuerSetParameters object itself.
+     * @return the IssuerBundle object itself.
      */
-    public CertificateIssuerSetParameters withAttributes(IssuerAttributes attributes) {
+    public T withAttributes(IssuerAttributes attributes) {
         this.attributes = attributes;
-        return this;
+        return (T) this;
     }
 
 }

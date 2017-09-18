@@ -7,6 +7,7 @@
 package com.microsoft.azure.keyvault.models;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.azure.keyvault.models.ActionType;
 
 /**
  * The action that will be executed.

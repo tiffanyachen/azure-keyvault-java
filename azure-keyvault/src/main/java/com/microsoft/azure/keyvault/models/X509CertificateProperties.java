@@ -8,6 +8,8 @@ package com.microsoft.azure.keyvault.models;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.azure.keyvault.models.KeyUsageType;
+import com.microsoft.azure.keyvault.models.SubjectAlternativeNames;
 
 /**
  * Properties of the X509 component of a certificate.

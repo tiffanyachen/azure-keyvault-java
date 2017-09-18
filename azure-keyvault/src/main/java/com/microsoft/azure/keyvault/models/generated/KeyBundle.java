@@ -4,20 +4,22 @@
  * regenerated.
  */
 
-package com.microsoft.azure.keyvault.models;
+package com.microsoft.azure.keyvault.models.generated;
 
 import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.azure.keyvault.models.KeyAttributes;
+import com.microsoft.azure.keyvault.webkey.JsonWebKey;
 
 /**
- * The key item containing key metadata.
+ * A KeyBundle consisting of a WebKey plus its attributes.
  */
-public class KeyItem {
+public abstract class KeyBundle<T extends KeyBundle<T>>{
     /**
-     * Key identifier.
+     * The Json web key.
      */
-    @JsonProperty(value = "kid")
-    private String kid;
+    @JsonProperty(value = "key")
+    private JsonWebKey key;
 
     /**
      * The key management attributes.
@@ -39,23 +41,23 @@ public class KeyItem {
     private Boolean managed;
 
     /**
-     * Get the kid value.
+     * Get the key value.
      *
-     * @return the kid value
+     * @return the key value
      */
-    public String kid() {
-        return this.kid;
+    public JsonWebKey key() {
+        return this.key;
     }
 
     /**
-     * Set the kid value.
+     * Set the key value.
      *
-     * @param kid the kid value to set
-     * @return the KeyItem object itself.
+     * @param key the key value to set
+     * @return the KeyBundle object itself.
      */
-    public KeyItem withKid(String kid) {
-        this.kid = kid;
-        return this;
+    public T withKey(JsonWebKey key) {
+        this.key = key;
+        return (T) this;
     }
 
     /**
@@ -71,11 +73,11 @@ public class KeyItem {
      * Set the attributes value.
      *
      * @param attributes the attributes value to set
-     * @return the KeyItem object itself.
+     * @return the KeyBundle object itself.
      */
-    public KeyItem withAttributes(KeyAttributes attributes) {
+    public T withAttributes(KeyAttributes attributes) {
         this.attributes = attributes;
-        return this;
+        return (T) this;
     }
 
     /**
@@ -91,11 +93,11 @@ public class KeyItem {
      * Set the tags value.
      *
      * @param tags the tags value to set
-     * @return the KeyItem object itself.
+     * @return the KeyBundle object itself.
      */
-    public KeyItem withTags(Map<String, String> tags) {
+    public T withTags(Map<String, String> tags) {
         this.tags = tags;
-        return this;
+        return (T) this;
     }
 
     /**

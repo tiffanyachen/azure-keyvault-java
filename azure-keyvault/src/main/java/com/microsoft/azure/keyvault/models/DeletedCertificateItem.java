@@ -6,6 +6,7 @@
 
 package com.microsoft.azure.keyvault.models;
 
+import com.microsoft.azure.keyvault.models.CertificateItem;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import com.fasterxml.jackson.annotation.JsonProperty;
