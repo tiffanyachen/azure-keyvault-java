@@ -7,8 +7,7 @@
 package com.microsoft.azure.keyvault.models;
 
 import java.io.IOException;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +16,7 @@ import com.microsoft.azure.keyvault.SecretIdentifier;
 /**
  * A secret consisting of a value, id and its attributes.
  */
-public class SecretBundle extends com.microsoft.azure.keyvault.models.generated.SecretBundle<SecretBundle> {
+public class SecretBundle extends com.microsoft.azure.keyvault.models.base.SecretBundle<SecretBundle> {
     /**
      * the secret identifier.
      * @return The Identifier value

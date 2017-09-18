@@ -6,7 +6,6 @@
 
 package com.microsoft.azure.keyvault.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +16,7 @@ import java.io.IOException;
 /**
  * A certificate operation is returned in case of asynchronous requests.
  */
-public class CertificateOperation extends com.microsoft.azure.keyvault.models.generated.CertificateOperation<CertificateOperation> {
+public class CertificateOperation extends com.microsoft.azure.keyvault.models.base.CertificateOperation<CertificateOperation> {
 
     /**
      * The certificate operation identifier.

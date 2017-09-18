@@ -7,8 +7,7 @@
 package com.microsoft.azure.keyvault.models;
 
 import java.io.IOException;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonProperty;
+
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +16,7 @@ import com.microsoft.azure.keyvault.KeyIdentifier;
 /**
  * A KeyBundle consisting of a WebKey plus its attributes.
  */
-public class KeyBundle extends com.microsoft.azure.keyvault.models.generated.KeyBundle<KeyBundle> {
+public class KeyBundle extends com.microsoft.azure.keyvault.models.base.KeyBundle<KeyBundle> {
 
     /**
      * The key identifier.

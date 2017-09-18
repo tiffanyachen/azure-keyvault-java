@@ -6,7 +6,6 @@
 
 package com.microsoft.azure.keyvault.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +16,7 @@ import java.io.IOException;
 /**
  * The issuer for Key Vault certificate.
  */
-public class IssuerBundle extends com.microsoft.azure.keyvault.models.generated.IssuerBundle<IssuerBundle> {
+public class IssuerBundle extends com.microsoft.azure.keyvault.models.base.IssuerBundle<IssuerBundle> {
     /**
      * The issuer identifier.
      * @return identifier for issuer

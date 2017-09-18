@@ -4,7 +4,7 @@
  * regenerated.
  */
 
-package com.microsoft.azure.keyvault.models.generated;
+package com.microsoft.azure.keyvault.models.base;
 
 import com.microsoft.azure.keyvault.models.CertificateAttributes;
 import com.microsoft.azure.keyvault.models.CertificatePolicy;

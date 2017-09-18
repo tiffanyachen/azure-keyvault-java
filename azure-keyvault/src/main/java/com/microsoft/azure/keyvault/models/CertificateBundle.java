@@ -12,16 +12,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.azure.keyvault.CertificateIdentifier;
 import com.microsoft.azure.keyvault.KeyIdentifier;
 import com.microsoft.azure.keyvault.SecretIdentifier;
-import com.microsoft.rest.Base64Url;
 
 import java.io.IOException;
-import java.util.Map;
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * A certificate bundle consists of a certificate (X509) plus its attributes.
  */
-public class CertificateBundle extends com.microsoft.azure.keyvault.models.generated.CertificateBundle<CertificateBundle> {
+public class CertificateBundle extends com.microsoft.azure.keyvault.models.base.CertificateBundle<CertificateBundle> {
     /**
      * The certificate identifier.
      * @return certificate identifier
