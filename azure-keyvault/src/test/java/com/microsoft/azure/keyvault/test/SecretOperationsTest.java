@@ -300,9 +300,8 @@ public class SecretOperationsTest extends KeyVaultClientIntegrationTestBase {
     }
 
     private static void validateSecret(SecretBundle secret, String vault, String name, String value, String contentType, Attributes attributes) throws Exception {
-        String prefix = vault + "secrets/" + name + "/";
-        System.out.println(vault);
-        System.out.println("this ist he vault");
+        String prefix = vault + "/secrets/" + name + "/";
+        
         String id = secret.id();
         Assert.assertTrue( //
                 String.format("\"id\" should start with \"%s\", but instead the value is \"%s\".", prefix, id), //

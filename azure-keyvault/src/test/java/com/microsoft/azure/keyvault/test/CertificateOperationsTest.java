@@ -775,6 +775,8 @@ public class CertificateOperationsTest extends KeyVaultClientIntegrationTestBase
                     .withProvider(ISSUER_TEST)
                     .withCredentials(credentials)
                     .withOrganizationDetails(organizationDetails);
+
+
         
         IssuerBundle createdCertificateIssuer = keyVaultClient.setCertificateIssuer(
                 new SetCertificateIssuerRequest

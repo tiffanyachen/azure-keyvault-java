@@ -49,12 +49,12 @@ public class KeyVaultClientCustomImpl extends KeyVaultClientBaseImpl implements 
 
     @Override
     public OkHttpClient httpClient() {
-        return httpClient();
+        return super.httpClient();
     }
 
     @Override
     public SerializerAdapter<?> serializerAdapter() {
-        return serializerAdapter();
+        return super.serializerAdapter();
     }
 
     /**
