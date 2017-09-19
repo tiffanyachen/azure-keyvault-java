@@ -6,14 +6,15 @@
 
 package com.microsoft.azure.keyvault.models;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.microsoft.azure.keyvault.webkey.JsonWebKey;
+
+import java.util.Map;
 
 /**
  * A KeyBundle consisting of a WebKey plus its attributes.
  */
-public class KeyBundle {
+public class KeyBundle extends com.microsoft.azure.keyvault.models.custom.KeyBundle {
     /**
      * The Json web key.
      */

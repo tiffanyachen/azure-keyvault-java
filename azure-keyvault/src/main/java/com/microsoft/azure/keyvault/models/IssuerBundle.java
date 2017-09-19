@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * The issuer for Key Vault certificate.
  */
-public class IssuerBundle {
+
+public class IssuerBundle extends com.microsoft.azure.keyvault.models.custom.IssuerBundle {
     /**
      * Identifier for the issuer object.
      */

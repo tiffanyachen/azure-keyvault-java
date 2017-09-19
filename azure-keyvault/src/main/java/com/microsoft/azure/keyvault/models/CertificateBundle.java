@@ -6,14 +6,15 @@
 
 package com.microsoft.azure.keyvault.models;
 
-import com.microsoft.rest.Base64Url;
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.microsoft.rest.Base64Url;
+
+import java.util.Map;
 
 /**
  * A certificate bundle consists of a certificate (X509) plus its attributes.
  */
-public class CertificateBundle {
+public class CertificateBundle extends com.microsoft.azure.keyvault.models.custom.CertificateBundle {
     /**
      * The certificate id.
      */

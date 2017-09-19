@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 /**
  * A certificate operation is returned in case of asynchronous requests.
  */
-public class CertificateOperation {
+public class CertificateOperation extends com.microsoft.azure.keyvault.models.custom.CertificateOperation {
     /**
      * The certificate id.
      */
@@ -235,5 +235,6 @@ public class CertificateOperation {
         this.requestId = requestId;
         return this;
     }
+
 
 }

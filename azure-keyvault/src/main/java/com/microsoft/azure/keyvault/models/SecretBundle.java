@@ -6,13 +6,14 @@
 
 package com.microsoft.azure.keyvault.models;
 
-import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.Map;
 
 /**
  * A secret consisting of a value, id and its attributes.
  */
-public class SecretBundle {
+public class SecretBundle extends com.microsoft.azure.keyvault.models.custom.SecretBundle {
     /**
      * The secret value.
      */
