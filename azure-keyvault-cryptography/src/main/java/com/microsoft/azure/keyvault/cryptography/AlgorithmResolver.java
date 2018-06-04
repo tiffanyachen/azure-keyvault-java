@@ -25,6 +25,7 @@ import com.microsoft.azure.keyvault.cryptography.algorithms.Es512;
 import com.microsoft.azure.keyvault.cryptography.algorithms.Rs256;
 import com.microsoft.azure.keyvault.cryptography.algorithms.Rsa15;
 import com.microsoft.azure.keyvault.cryptography.algorithms.RsaOaep;
+import com.microsoft.azure.keyvault.cryptography.algorithms.RsaesOaep256;
 
 public class AlgorithmResolver {
 
@@ -45,6 +46,7 @@ public class AlgorithmResolver {
 
         Default.put(Rsa15.ALGORITHM_NAME, new Rsa15());
         Default.put(RsaOaep.ALGORITHM_NAME, new RsaOaep());
+        Default.put(RsaesOaep256.ALGORITHM_NAME, new RsaesOaep256());
 
         Default.put( Rs256.ALGORITHM_NAME, new Rs256() );
         // Default.put( RsNull.ALGORITHM_NAME, new RsNull() );

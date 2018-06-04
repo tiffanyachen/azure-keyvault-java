@@ -19,6 +19,7 @@ import com.microsoft.azure.keyvault.cryptography.RsaKey;
 import com.microsoft.azure.keyvault.cryptography.algorithms.Rs256;
 import com.microsoft.azure.keyvault.cryptography.algorithms.Rsa15;
 import com.microsoft.azure.keyvault.cryptography.algorithms.RsaOaep;
+import com.microsoft.azure.keyvault.cryptography.algorithms.RsaesOaep256;
 import com.microsoft.azure.keyvault.webkey.JsonWebKey;
 
 public class RsaKeyTest {
@@ -98,6 +99,31 @@ public class RsaKeyTest {
 
         key.close();
     }
+    
+    @Test
+    public void testRsaesOaep256() throws Exception {
+
+        RsaKey key = getTestRsaKey();
+
+        // Wrap and Unwrap
+        Pair<byte[], String> wrapped   = key.wrapKeyAsync(CEK, RsaesOaep256.ALGORITHM_NAME).get();
+        byte[]               unwrapped = key.unwrapKeyAsync(wrapped.getLeft(), wrapped.getRight()).get();
+
+        // Assert
+        assertEquals(RsaesOaep256.ALGORITHM_NAME, wrapped.getRight());
+        assertArrayEquals(CEK, unwrapped);
+
+        // Encrypt and Decrypt
+        Triple<byte[], byte[], String> encrypted = key.encryptAsync(CEK, null, null, RsaesOaep256.ALGORITHM_NAME).get();
+        byte[]                         decrypted = key.decryptAsync(encrypted.getLeft(), null, null, null, encrypted.getRight()).get();
+
+        // Assert
+        assertEquals(RsaesOaep256.ALGORITHM_NAME, encrypted.getRight());
+        assertArrayEquals(CEK, decrypted);
+
+        key.close();
+    }
+    
 
     @Test
     public void testDefaultAlgorithm() throws Exception {
@@ -126,6 +152,7 @@ public class RsaKeyTest {
 
         key.close();
     }
+
 
     @Test
     public void testSignVerify() throws Exception {
