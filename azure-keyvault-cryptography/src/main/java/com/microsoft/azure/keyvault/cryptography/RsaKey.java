@@ -22,6 +22,7 @@ import com.google.common.util.concurrent.ListenableFuture;
 import com.microsoft.azure.keyvault.core.IKey;
 import com.microsoft.azure.keyvault.cryptography.algorithms.Rs256;
 import com.microsoft.azure.keyvault.cryptography.algorithms.RsaOaep;
+import com.microsoft.azure.keyvault.cryptography.algorithms.RsaSignature;
 import com.microsoft.azure.keyvault.webkey.JsonWebKey;
 
 public class RsaKey implements IKey {
@@ -346,12 +347,12 @@ public class RsaKey implements IKey {
             throw new NoSuchAlgorithmException(algorithm);
         }
         
-        Rs256 algo = (Rs256)baseAlgorithm;
+        RsaSignature algo = (RsaSignature) baseAlgorithm;
 
         ISignatureTransform signer = algo.createSignatureTransform(_keyPair);
         
         try {
-			return Futures.immediateFuture(Pair.of(signer.sign(digest), Rs256.ALGORITHM_NAME));
+			return Futures.immediateFuture(Pair.of(signer.sign(digest), algorithm));
 		} catch (Exception e) {
 			return Futures.immediateFailedFuture(e);
 		}
@@ -376,7 +377,7 @@ public class RsaKey implements IKey {
             throw new NoSuchAlgorithmException(algorithm);
         }
         
-        Rs256 algo = (Rs256)baseAlgorithm;
+        RsaSignature algo = (RsaSignature) baseAlgorithm;
 
         ISignatureTransform signer = algo.createSignatureTransform(_keyPair);
         
